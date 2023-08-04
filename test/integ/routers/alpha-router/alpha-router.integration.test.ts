@@ -2564,6 +2564,7 @@ describe('quote for other networks', () => {
     [ChainId.GNOSIS]: WBTC_GNOSIS,
     [ChainId.MOONBEAM]: WBTC_MOONBEAM,
     [ChainId.BSC]: USDC_BSC,
+    [ChainId.HARMONY]: USDC_ON(ChainId.HARMONY),
   };
   const TEST_ERC20_2: { [chainId in ChainId]: Token } = {
     [ChainId.MAINNET]: DAI_ON(1),
@@ -2585,6 +2586,7 @@ describe('quote for other networks', () => {
     [ChainId.GNOSIS]: USDC_ETHEREUM_GNOSIS,
     [ChainId.MOONBEAM]: WBTC_MOONBEAM,
     [ChainId.BSC]: USDT_BSC,
+    [ChainId.HARMONY]: DAI_ON(ChainId.HARMONY),
   };
 
   // TODO: Find valid pools/tokens on optimistic kovan and polygon mumbai. We skip those tests for now.
@@ -2608,7 +2610,7 @@ describe('quote for other networks', () => {
       const erc1 = TEST_ERC20_1[chain];
       const erc2 = TEST_ERC20_2[chain];
 
-      describe(`${ID_TO_NETWORK_NAME(chain)} ${tradeType} 2xx`, function() {
+      describe(`${ID_TO_NETWORK_NAME(chain)} ${tradeType} 2xx`, function () {
         const wrappedNative = WNATIVE_ON(chain);
 
         let alphaRouter: AlphaRouter;
@@ -2662,7 +2664,7 @@ describe('quote for other networks', () => {
           });
         });
 
-        describe(`Swap`, function() {
+        describe(`Swap`, function () {
           it(`${wrappedNative.symbol} -> erc20`, async () => {
             const tokenIn = wrappedNative;
             const tokenOut = erc1;
@@ -2721,7 +2723,7 @@ describe('quote for other networks', () => {
             // large input amounts
             // TODO: Simplify this when Celo has more liquidity
             const amount =
-              chain == ChainId.CELO || chain == ChainId.CELO_ALFAJORES
+              chain == ChainId.CELO || chain == ChainId.CELO_ALFAJORES || chain == ChainId.HARMONY
                 ? tradeType == TradeType.EXACT_INPUT
                   ? parseAmount('10', tokenIn)
                   : parseAmount('10', tokenOut)
@@ -2826,9 +2828,9 @@ describe('quote for other networks', () => {
         });
 
         if (isTenderlyEnvironmentSet()) {
-          describe(`Simulate + Swap`, function() {
+          describe(`Simulate + Swap`, function () {
             // Tenderly does not support Celo
-            if ([ChainId.CELO, ChainId.CELO_ALFAJORES].includes(chain)) {
+            if ([ChainId.CELO, ChainId.CELO_ALFAJORES, ChainId.HARMONY].includes(chain)) {
               return;
             }
             it(`${wrappedNative.symbol} -> erc20`, async () => {

@@ -14,6 +14,13 @@ import {
   WBTC_MAINNET,
   WMATIC_POLYGON,
   WMATIC_POLYGON_MUMBAI,
+  ETH_HARMONY,
+  WBTC_HARMONY,
+  USDT_HARMONY,
+  USDC_HARMONY,
+  ARB_USDC_HARMONY,
+  ARB_USDT_HARMONY,
+  ARB_DAI_HARMONY,
 
 } from '../../providers/token-provider';
 import { ChainId, WRAPPED_NATIVE_CURRENCY } from '../../util/chains';
@@ -65,6 +72,16 @@ export const BASES_TO_CHECK_TRADES_AGAINST = (
       USDC_BSC,
       USDT_BSC,
       BTC_BSC,
+    ],
+    [ChainId.HARMONY]: [
+      WRAPPED_NATIVE_CURRENCY[ChainId.HARMONY]!,
+      ETH_HARMONY,
+      WBTC_HARMONY,
+      USDT_HARMONY,
+      USDC_HARMONY,
+      ARB_USDC_HARMONY,
+      ARB_USDT_HARMONY,
+      ARB_DAI_HARMONY,
     ],
   };
 };

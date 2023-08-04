@@ -43,6 +43,10 @@ import {
   USDT_OPTIMISTIC_KOVAN,
   USDT_ROPSTEN,
   WBTC_GÖRLI,
+  ETH_HARMONY,
+  WBTC_HARMONY,
+  USDT_HARMONY,
+  USDC_HARMONY,
 } from '../../../providers/token-provider';
 import { IV2PoolProvider } from '../../../providers/v2/pool-provider';
 import { ArbitrumGasData, IL2GasDataProvider, OptimismGasData, } from '../../../providers/v3/gas-data-provider';
@@ -84,6 +88,12 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.GNOSIS]: [USDC_ETHEREUM_GNOSIS],
   [ChainId.MOONBEAM]: [USDC_MOONBEAM],
   [ChainId.BSC]: [USDT_BSC, USDC_BSC, DAI_BSC],
+  [ChainId.HARMONY]: [
+    ETH_HARMONY,
+    WBTC_HARMONY,
+    USDT_HARMONY,
+    USDC_HARMONY,
+  ],
 };
 
 export type L1ToL2GasCosts = {
@@ -100,8 +110,8 @@ export type BuildOnChainGasModelFactoryType = {
   quoteToken: Token;
   v2poolProvider: IV2PoolProvider;
   l2GasDataProvider?:
-    | IL2GasDataProvider<OptimismGasData>
-    | IL2GasDataProvider<ArbitrumGasData>;
+  | IL2GasDataProvider<OptimismGasData>
+  | IL2GasDataProvider<ArbitrumGasData>;
 };
 
 export type BuildV2GasModelFactoryType = {

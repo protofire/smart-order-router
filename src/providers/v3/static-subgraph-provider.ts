@@ -75,6 +75,13 @@ import {
   WMATIC_POLYGON,
   WMATIC_POLYGON_MUMBAI,
   WXDAI_GNOSIS,
+  ETH_HARMONY,
+  WBTC_HARMONY,
+  USDT_HARMONY,
+  USDC_HARMONY,
+  ARB_USDC_HARMONY,
+  ARB_USDT_HARMONY,
+  ARB_DAI_HARMONY,
 } from '../token-provider';
 
 import { IV3PoolProvider } from './pool-provider';
@@ -197,6 +204,16 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     USDC_MOONBEAM,
     WBTC_MOONBEAM,
   ],
+  [ChainId.HARMONY]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.HARMONY],
+    ETH_HARMONY,
+    WBTC_HARMONY,
+    USDT_HARMONY,
+    USDC_HARMONY,
+    ARB_USDC_HARMONY,
+    ARB_USDT_HARMONY,
+    ARB_DAI_HARMONY,
+  ]
 };
 
 /**
