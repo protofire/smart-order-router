@@ -1,5 +1,5 @@
 import { Protocol } from '@uniswap/router-sdk';
-import {ChainId, Token, TradeType } from '@uniswap/sdk-core';
+import { ChainId, Token, TradeType } from '@uniswap/sdk-core';
 import { FeeAmount } from '@uniswap/v3-sdk';
 import _ from 'lodash';
 
@@ -27,6 +27,7 @@ import {
   USDC_AVAX,
   USDC_BNB,
   USDC_ETHEREUM_GNOSIS,
+  USDC_HARMONY,
   USDC_MAINNET,
   USDC_MOONBEAM,
   USDC_OPTIMISM,
@@ -35,11 +36,13 @@ import {
   USDC_SEPOLIA,
   USDT_ARBITRUM,
   USDT_BNB,
+  USDT_HARMONY,
   USDT_MAINNET,
   USDT_OPTIMISM,
   USDT_OPTIMISM_GOERLI,
   WBTC_ARBITRUM,
   WBTC_GNOSIS,
+  WBTC_HARMONY,
   WBTC_MAINNET,
   WBTC_MOONBEAM,
   WBTC_OPTIMISM,
@@ -170,6 +173,11 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.AVALANCHE]: [
     DAI_AVAX,
     USDC_AVAX,
+  ],
+  [ChainId.HARMONY]: [
+    WBTC_HARMONY,
+    USDC_HARMONY,
+    USDT_HARMONY,
   ],
 };
 
@@ -314,7 +322,7 @@ export async function getV3CandidatePools({
       return (
         !poolAddressesSoFar.has(subgraphPool.id) &&
         ((subgraphPool.token0.id == tokenInAddress &&
-            subgraphPool.token1.id == tokenOutAddress) ||
+          subgraphPool.token1.id == tokenOutAddress) ||
           (subgraphPool.token1.id == tokenInAddress &&
             subgraphPool.token0.id == tokenOutAddress))
       );
@@ -504,8 +512,7 @@ export async function getV3CandidatePools({
   });
 
   const printV3SubgraphPool = (s: V3SubgraphPool) =>
-    `${tokenAccessor.getTokenByAddress(s.token0.id)?.symbol ?? s.token0.id}/${
-      tokenAccessor.getTokenByAddress(s.token1.id)?.symbol ?? s.token1.id
+    `${tokenAccessor.getTokenByAddress(s.token0.id)?.symbol ?? s.token0.id}/${tokenAccessor.getTokenByAddress(s.token1.id)?.symbol ?? s.token1.id
     }/${s.feeTier}`;
 
   log.info(
@@ -544,10 +551,8 @@ export async function getV3CandidatePools({
 
     if (!tokenA || !tokenB) {
       log.info(
-        `Dropping candidate pool for ${subgraphPool.token0.id}/${
-          subgraphPool.token1.id
-        }/${fee} because ${
-          tokenA ? subgraphPool.token1.id : subgraphPool.token0.id
+        `Dropping candidate pool for ${subgraphPool.token0.id}/${subgraphPool.token1.id
+        }/${fee} because ${tokenA ? subgraphPool.token1.id : subgraphPool.token0.id
         } not found by token provider`
       );
       return undefined;
@@ -893,8 +898,7 @@ export async function getV2CandidatePools({
   });
 
   const printV2SubgraphPool = (s: V2SubgraphPool) =>
-    `${tokenAccessor.getTokenByAddress(s.token0.id)?.symbol ?? s.token0.id}/${
-      tokenAccessor.getTokenByAddress(s.token1.id)?.symbol ?? s.token1.id
+    `${tokenAccessor.getTokenByAddress(s.token0.id)?.symbol ?? s.token0.id}/${tokenAccessor.getTokenByAddress(s.token1.id)?.symbol ?? s.token1.id
     }`;
 
   log.info(
@@ -1011,19 +1015,19 @@ export async function getMixedRouteCandidatePools({
    *
    * This way we can reduce calls to our provider since it's possible to generate a lot of mixed routes
    */
-    /// We only really care about pools involving the tokenIn or tokenOut explictly,
-    /// since there's no way a long tail token in V2 would be routed through as an intermediary
+  /// We only really care about pools involving the tokenIn or tokenOut explictly,
+  /// since there's no way a long tail token in V2 would be routed through as an intermediary
   const V2topByTVLPoolIds = new Set(
-      [
-        ...V2candidatePools.selections.topByTVLUsingTokenIn,
-        ...V2candidatePools.selections.topByBaseWithTokenIn,
-        /// tokenOut:
-        ...V2candidatePools.selections.topByTVLUsingTokenOut,
-        ...V2candidatePools.selections.topByBaseWithTokenOut,
-        /// Direct swap:
-        ...V2candidatePools.selections.topByDirectSwapPool,
-      ].map((poolId) => poolId.id)
-    );
+    [
+      ...V2candidatePools.selections.topByTVLUsingTokenIn,
+      ...V2candidatePools.selections.topByBaseWithTokenIn,
+      /// tokenOut:
+      ...V2candidatePools.selections.topByTVLUsingTokenOut,
+      ...V2candidatePools.selections.topByBaseWithTokenOut,
+      /// Direct swap:
+      ...V2candidatePools.selections.topByDirectSwapPool,
+    ].map((poolId) => poolId.id)
+  );
 
   const V2topByTVLSortedPools = _(V2subgraphPools)
     .filter((pool) => V2topByTVLPoolIds.has(pool.id))
@@ -1112,10 +1116,8 @@ export async function getMixedRouteCandidatePools({
 
     if (!tokenA || !tokenB) {
       log.info(
-        `Dropping candidate pool for ${subgraphPool.token0.id}/${
-          subgraphPool.token1.id
-        }/${fee} because ${
-          tokenA ? subgraphPool.token1.id : subgraphPool.token0.id
+        `Dropping candidate pool for ${subgraphPool.token0.id}/${subgraphPool.token1.id
+        }/${fee} because ${tokenA ? subgraphPool.token1.id : subgraphPool.token0.id
         } not found by token provider`
       );
       return undefined;
