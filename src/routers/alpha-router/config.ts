@@ -41,6 +41,7 @@ export const DEFAULT_ROUTING_CONFIG_BY_CHAIN = (
     case ChainId.ARBITRUM_GOERLI:
     case ChainId.CELO:
     case ChainId.CELO_ALFAJORES:
+    case ChainId.HARMONY:
       return {
         v2PoolSelection: {
           topN: 3,

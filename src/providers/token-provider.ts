@@ -538,11 +538,68 @@ export const WBTC_MOONBEAM = new Token(
   'Wrapped BTC bridged using Multichain'
 );
 
+
+export const WBTC_HARMONY = new Token(
+  ChainId.HARMONY,
+  '0x118f50d23810c5E09Ebffb42d7D3328dbF75C2c2',
+  8,
+  '1WBTC',
+  'Wrapped BTC'
+);
+
+export const ETH_HARMONY = new Token(
+  ChainId.HARMONY,
+  '0x4cC435d7b9557d54d6EF02d69Bbf72634905Bf11',
+  18,
+  '1ETH',
+  'ETH'
+);
+
+export const USDT_HARMONY = new Token(
+  ChainId.HARMONY,
+  '0xF2732e8048f1a411C63e2df51d08f4f52E598005',
+  6,
+  '1USDT',
+  'Tether USD'
+);
+
+export const USDC_HARMONY = new Token(
+  ChainId.HARMONY,
+  '0xBC594CABd205bD993e7FfA6F3e9ceA75c1110da5',
+  6,
+  '1USDC',
+  'USD Coin'
+);
+
+export const ARB_USDC_HARMONY = new Token(
+  ChainId.HARMONY,
+  '0x9b5fae311A4A4b9d838f301C9c27b55d19BAa4Fb',
+  6,
+  'arbUSDC',
+  'USD Coin (Arb1)'
+);
+
+export const ARB_USDT_HARMONY = new Token(
+  ChainId.HARMONY,
+  '0x2DA729BA5231d2C79290aBA4a8b85a5c94dA4724',
+  6,
+  'arbUSDT',
+  'Tether USD'
+);
+
+export const ARB_DAI_HARMONY = new Token(
+  ChainId.HARMONY,
+  '0x7C07d01C9DaB5aBB09CE2b42242a7570F25fC2CC',
+  18,
+  'arbDAI',
+  'Dai Stablecoin'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,
     protected multicall2Provider: IMulticallProvider
-  ) {}
+  ) { }
 
   private async getTokenSymbol(
     addresses: string[],
@@ -687,10 +744,8 @@ export class TokenProvider implements ITokenProvider {
       }
 
       log.info(
-        `Got token symbol and decimals for ${
-          Object.values(addressToToken).length
-        } out of ${addresses.length} tokens on-chain ${
-          providerConfig ? `as of: ${providerConfig?.blockNumber}` : ''
+        `Got token symbol and decimals for ${Object.values(addressToToken).length
+        } out of ${addresses.length} tokens on-chain ${providerConfig ? `as of: ${providerConfig?.blockNumber}` : ''
         }`
       );
     }
@@ -739,6 +794,8 @@ export const DAI_ON = (chainId: ChainId): Token => {
       return DAI_BNB;
     case ChainId.AVALANCHE:
       return DAI_AVAX;
+    case ChainId.HARMONY:
+      return ARB_DAI_HARMONY;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }
@@ -758,6 +815,8 @@ export const USDT_ON = (chainId: ChainId): Token => {
       return USDT_ARBITRUM;
     case ChainId.BNB:
       return USDT_BNB;
+    case ChainId.HARMONY:
+      return USDT_HARMONY;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }
@@ -795,6 +854,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_BASE;
     case ChainId.BASE_GOERLI:
       return USDC_BASE_GOERLI;
+    case ChainId.HARMONY:
+      return USDC_HARMONY;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }
