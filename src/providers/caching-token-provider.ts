@@ -150,17 +150,17 @@ export const CACHE_SEED_TOKENS: {
   [ChainId.BASE]: {
     USDC: USDC_BASE,
     WETH: WRAPPED_NATIVE_CURRENCY[ChainId.BASE],
-  }
+  },
   [ChainId.HARMONY]: {
     USDC: USDC_HARMONY,
     USDT: USDT_HARMONY,
     WBTC: WBTC_HARMONY,
     ETH: ETH_HARMONY,
-    WBNB: WRAPPED_NATIVE_CURRENCY[ChainId.HARMONY],
+    WONE: WRAPPED_NATIVE_CURRENCY[ChainId.HARMONY],
     ARB_USDC_HARMONY,
     ARB_USDT_HARMONY,
     ARB_DAI_HARMONY,
-  },
+  }
 
   // Currently we do not have providers for Moonbeam mainnet or Gnosis testnet
 };

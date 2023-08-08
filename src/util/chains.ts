@@ -182,7 +182,7 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     'ETH',
     'ETHER',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-  ]
+  ],
   [ChainId.HARMONY]: ['ONE'],
 };
 
@@ -411,7 +411,7 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     18,
     'WETH',
     'Wrapped Ether'
-  )
+  ),
   [ChainId.HARMONY]: new Token(
     ChainId.HARMONY,
     '0xcf664087a5bb0237a0bad6742852ec6c8d69a27a',
@@ -630,8 +630,9 @@ export function nativeOnChain(chainId: number): NativeCurrency {
     cachedNativeCurrency[chainId] = new BnbNativeCurrency(chainId);
   } else if (isAvax(chainId)) {
     cachedNativeCurrency[chainId] = new AvalancheNativeCurrency(chainId);
-  else if (isHarmony(chainId))
-      cachedNativeCurrency[chainId] = new HarmonyNativeCurrency(chainId);
+  }
+  else if (isHarmony(chainId)) {
+    cachedNativeCurrency[chainId] = new HarmonyNativeCurrency(chainId);
   } else {
     cachedNativeCurrency[chainId] = ExtendedEther.onChain(chainId);
   }
