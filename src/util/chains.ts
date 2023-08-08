@@ -389,7 +389,7 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     18,
     'WETH',
     'Wrapped Ether'
-  )
+  ),
   [ChainId.HARMONY]: new Token(
     ChainId.HARMONY,
     '0xcf664087a5bb0237a0bad6742852ec6c8d69a27a',
