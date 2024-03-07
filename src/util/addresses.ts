@@ -106,6 +106,8 @@ export const WETH9: {
     | ChainId.AVALANCHE
     | ChainId.ZORA
     | ChainId.ZORA_SEPOLIA
+    | ChainId.ARBITRUM_SEPOLIA
+    | ChainId.OPTIMISM_SEPOLIA
   >]: Token;
 } = {
   [ChainId.MAINNET]: new Token(
