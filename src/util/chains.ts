@@ -459,6 +459,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     'WETH',
     'Wrapped Ether'
   ),
+  [ChainId.ROOTSTOCK]: new Token(
+    ChainId.BASE_GOERLI,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
 };
 
 function isMatic(

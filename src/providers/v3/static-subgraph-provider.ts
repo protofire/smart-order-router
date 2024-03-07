@@ -158,6 +158,7 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.ZORA_SEPOLIA]: [WRAPPED_NATIVE_CURRENCY[ChainId.ZORA_SEPOLIA]],
   [ChainId.OPTIMISM_SEPOLIA]: [],
   [ChainId.ARBITRUM_SEPOLIA]: [],
+  [ChainId.ROOTSTOCK]: []
 };
 
 /**
