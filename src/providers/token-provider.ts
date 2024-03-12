@@ -647,6 +647,23 @@ export const WBTC_MOONBEAM = new Token(
   'Wrapped BTC bridged using Multichain'
 );
 
+export const USDC_ZORA = new Token(
+  ChainId.ZORA,
+  '0xCccCCccc7021b32EBb4e8C08314bD62F7c653EC4',
+  6,
+  'USDzC',
+  'USDC Bridged'
+);
+
+
+export const USDC_ZORA_SEPOLIA = new Token(
+  ChainId.ZORA,
+  '0xccCcCc4532d20C06726866e328F7478Edabf907B',
+  6,
+  'USDzC',
+  'USDC Bridged'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,
@@ -914,6 +931,10 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_BASE;
     case ChainId.BASE_GOERLI:
       return USDC_BASE_GOERLI;
+    case ChainId.ZORA:
+      return USDC_ZORA;
+    case ChainId.ZORA_SEPOLIA:
+      return USDC_ZORA_SEPOLIA;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }

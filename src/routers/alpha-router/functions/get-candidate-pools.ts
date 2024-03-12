@@ -43,6 +43,8 @@ import {
   USDC_OPTIMISM_GOERLI,
   USDC_POLYGON,
   USDC_SEPOLIA,
+  USDC_ZORA,
+  USDC_ZORA_SEPOLIA,
   USDT_ARBITRUM,
   USDT_BNB,
   USDT_MAINNET,
@@ -185,6 +187,12 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.BNB]: [DAI_BNB, USDC_BNB, USDT_BNB],
   [ChainId.AVALANCHE]: [DAI_AVAX, USDC_AVAX],
   [ChainId.BASE]: [USDC_BASE],
+  [ChainId.ZORA]: [
+    USDC_ZORA,
+  ],
+  [ChainId.ZORA_SEPOLIA]: [
+    USDC_ZORA_SEPOLIA,
+  ],
 };
 
 class SubcategorySelectionPools<SubgraphPool> {
