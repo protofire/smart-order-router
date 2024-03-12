@@ -548,7 +548,7 @@ export const USDC_ZORA = new Token(
 );
 
 export const USDC_ZORA_SEPOLIA = new Token(
-  ChainId.ZORA,
+  ChainId.ZORA_SEPOLIA,
   '0xccCcCc4532d20C06726866e328F7478Edabf907B',
   6,
   'USDzC',
