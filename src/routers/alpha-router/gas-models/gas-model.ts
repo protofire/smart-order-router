@@ -29,6 +29,7 @@ import {
   USDC_POLYGON,
   USDC_SEPOLIA,
   USDC_ZORA,
+  USDC_ZORA_SEPOLIA,
   USDT_ARBITRUM,
   USDT_BNB,
   USDT_GOERLI,
@@ -76,6 +77,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.AVALANCHE]: [DAI_AVAX, USDC_AVAX],
   [ChainId.BASE]: [USDC_BASE],
   [ChainId.ZORA]: [USDC_ZORA],
+  [ChainId.ZORA_SEPOLIA]: [USDC_ZORA_SEPOLIA],
 };
 
 export type L1ToL2GasCosts = {

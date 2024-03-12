@@ -35,6 +35,7 @@ import {
   USDC_POLYGON,
   USDC_SEPOLIA,
   USDC_ZORA,
+  USDC_ZORA_SEPOLIA,
   USDT_ARBITRUM,
   USDT_BNB,
   USDT_MAINNET,
@@ -175,6 +176,9 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   ],
   [ChainId.ZORA]: [
     USDC_ZORA,
+  ],
+  [ChainId.ZORA_SEPOLIA]: [
+    USDC_ZORA_SEPOLIA,
   ],
 };
 
