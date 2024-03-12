@@ -34,6 +34,7 @@ import {
   USDC_OPTIMISM_GOERLI,
   USDC_POLYGON,
   USDC_SEPOLIA,
+  USDC_ZORA,
   USDT_ARBITRUM,
   USDT_BNB,
   USDT_MAINNET,
@@ -171,6 +172,9 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   ],
   [ChainId.BASE]: [
     USDC_BASE,
+  ],
+  [ChainId.ZORA]: [
+    USDC_ZORA,
   ],
 };
 
