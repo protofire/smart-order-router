@@ -64,9 +64,9 @@ const SUBGRAPH_URL_BY_CHAIN: { [chainId in ChainId]?: string } = {
   [ChainId.BASE]: 
     'https://api.studio.thegraph.com/query/48211/uniswap-v3-base/version/latest',
   [ChainId.ZORA]:
-    'https://api.goldsky.com/api/public/project_cltg8htcp35aw01xn43dqhxmv/subgraphs/uniswap-v3-zora/1.0.0/gn',
+    'https://api.goldsky.com/api/public/project_clhk16b61ay9t49vm6ntn4mkz/subgraphs/uniswap-v3-zora-network/1.0.0/gn',
   [ChainId.ZORA_SEPOLIA]:
-    'https://api.goldsky.com/api/public/project_cltg8htcp35aw01xn43dqhxmv/subgraphs/uniswap-v3-zora-sepolia/1.0.0/gn'
+    'https://api.goldsky.com/api/public/project_clhk16b61ay9t49vm6ntn4mkz/subgraphs/uniswap-v3-zora-sepolia/1.0.0/gn'
 };
 
 const PAGE_SIZE = 1000; // 1k is max possible query size from subgraph.
