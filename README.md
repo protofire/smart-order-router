@@ -241,6 +241,12 @@ Total ticks crossed: 7
 ./bin/cli quote --tokenIn 0xe4C7fBB0a626ed208021ccabA6Be1566905E2dFc --tokenOut 0x9EDCde0257F2386Ce177C3a7FCdd97787F0D841d --amount 10 --exactIn --minSplits 1 --protocols v2,v3,mixed --chainId 11124
 ```
 
+## Zero Mainnet
+
+```
+./bin/cli quote --tokenIn 0x6a6394F47DD0BAF794808F2749C09bd4Ee874E70 --tokenOut ETH --amount 10 --exactIn --minSplits 1 --protocols v2,v3,mixed --chainId 543210
+```
+
 ## Adding a new Chain
 
 The main components to complete are:
