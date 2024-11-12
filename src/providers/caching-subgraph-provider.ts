@@ -29,6 +29,7 @@ import {
   USDC_AVAX,
   USDC_BASE,
   USDC_BNB,
+  USDC_BOB,
   USDC_MAINNET,
   USDC_MOONBEAM,
   USDC_NATIVE_ARBITRUM,
@@ -127,10 +128,8 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     WRAPPED_NATIVE_CURRENCY[ChainId.ABSTRACT_TESTNET]!,
     USDC_ABSTRACT_TESTNET,
   ],
-  [ChainId.ZERO]: [
-    WRAPPED_NATIVE_CURRENCY[ChainId.ZERO]!,
-    USDC_ZERO,
-  ],
+  [ChainId.ZERO]: [WRAPPED_NATIVE_CURRENCY[ChainId.ZERO]!, USDC_ZERO],
+  [ChainId.BOB]: [WRAPPED_NATIVE_CURRENCY[ChainId.BOB]!, USDC_BOB],
 };
 
 export interface IV3SubgraphProvider {
@@ -151,7 +150,8 @@ export interface ISubgraphProvider<TSubgraphPool extends SubgraphPool> {
 
 export abstract class CachingSubgraphProvider<
   TSubgraphPool extends SubgraphPool
-> implements ISubgraphProvider<TSubgraphPool> {
+> implements ISubgraphProvider<TSubgraphPool>
+{
   private SUBGRAPH_KEY = (chainId: ChainId) =>
     `subgraph-pools-${this.protocol}-${chainId}`;
 
@@ -167,7 +167,7 @@ export abstract class CachingSubgraphProvider<
     protected subgraphProvider: ISubgraphProvider<TSubgraphPool>,
     private cache: ICache<TSubgraphPool[]>,
     private protocol: Protocol
-  ) { }
+  ) {}
 
   public async getPools(): Promise<TSubgraphPool[]> {
     const cachedPools = await this.cache.get(this.SUBGRAPH_KEY(this.chainId));
