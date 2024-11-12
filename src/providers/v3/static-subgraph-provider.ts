@@ -39,6 +39,7 @@ import {
   USDC_AVAX,
   USDC_BASE,
   USDC_BNB,
+  USDC_BOB,
   USDC_ETHEREUM_GNOSIS,
   USDC_GOERLI,
   USDC_MAINNET,
@@ -181,10 +182,8 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     WRAPPED_NATIVE_CURRENCY[ChainId.ABSTRACT_TESTNET]!,
     USDC_ABSTRACT_TESTNET,
   ],
-  [ChainId.ZERO]: [
-    WRAPPED_NATIVE_CURRENCY[ChainId.ZERO]!,
-    USDC_ZERO,
-  ],
+  [ChainId.ZERO]: [WRAPPED_NATIVE_CURRENCY[ChainId.ZERO]!, USDC_ZERO],
+  [ChainId.BOB]: [WRAPPED_NATIVE_CURRENCY[ChainId.BOB]!, USDC_BOB],
 };
 
 /**
@@ -202,7 +201,7 @@ export class StaticV3SubgraphProvider implements IV3SubgraphProvider {
   constructor(
     private chainId: ChainId,
     private poolProvider: IV3PoolProvider
-  ) { }
+  ) {}
 
   public async getPools(
     tokenIn?: Token,

@@ -31,6 +31,7 @@ import {
   USDC_AVAX,
   USDC_BASE,
   USDC_BNB,
+  USDC_BOB,
   USDC_BRIDGED_AVAX,
   USDC_CELO,
   USDC_ETHEREUM_GNOSIS,
@@ -126,6 +127,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.ZKSYNC]: [DAI_ZKSYNC, USDCE_ZKSYNC, USDC_ZKSYNC],
   [ChainId.ABSTRACT_TESTNET]: [USDC_ABSTRACT_TESTNET],
   [ChainId.ZERO]: [USDC_ZERO],
+  [ChainId.BOB]: [USDC_BOB],
 };
 
 export type L1ToL2GasCosts = {
