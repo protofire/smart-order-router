@@ -337,6 +337,8 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.ABSTRACT_TESTNET;
     case 543210:
       return ChainName.ZERO;
+    case 60808:
+      return ChainName.BOB;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -390,6 +392,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_ABSTRACT_TESTNET!;
     case ChainId.ZERO:
       return process.env.JSON_RPC_PROVIDER_ZERO!;
+    case ChainId.BOB:
+      return process.env.JSON_RPC_PROVIDER_BOB!;
     default:
       throw new Error(`Chain id: ${id} not supported`);
   }
