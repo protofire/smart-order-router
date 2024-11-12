@@ -42,8 +42,7 @@ export const V2_SUPPORTED = [
   ChainId.BNB,
   ChainId.AVALANCHE,
   ChainId.ABSTRACT_TESTNET,
-  // TODO: add ZERO once router is deployed
-  //ChainId.ZERO
+  ChainId.ZERO
 ];
 
 export const V4_SUPPORTED = [ChainId.SEPOLIA];
