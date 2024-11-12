@@ -130,8 +130,9 @@ export const routeAmountsToString = (
     const portion = amount.divide(total);
     const percent = new Percent(portion.numerator, portion.denominator);
     /// @dev special case for MIXED routes we want to show user friendly V2+V3 instead
-    return `[${protocol == Protocol.MIXED ? 'V2 + V3' : protocol
-      }] ${percent.toFixed(2)}% = ${routeToString(route)}`;
+    return `[${
+      protocol == Protocol.MIXED ? 'V2 + V3' : protocol
+    }] ${percent.toFixed(2)}% = ${routeToString(route)}`;
   });
 
   return _.join(routeStrings, ', ');
