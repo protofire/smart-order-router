@@ -150,6 +150,7 @@ export const TENDERLY_NOT_SUPPORTED_CHAINS = [
   ChainId.ABSTRACT_TESTNET,
   ChainId.ZERO,
   ChainId.BOB,
+  ChainId.CYBER,
 ];
 
 // We multiply tenderly gas limit by this to overestimate gas limit
