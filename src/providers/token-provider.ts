@@ -720,6 +720,14 @@ export const USDC_BOB = new Token(
   'USDC'
 );
 
+export const USDC_CYBER = new Token(
+  ChainId.CYBER,
+  '0x81759adbf5520ad94da10991dfa29ff147d3337b',
+  6,
+  'USDC',
+  'USDC'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,
@@ -999,6 +1007,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_ZERO;
     case ChainId.BOB:
       return USDC_BOB;
+    case ChainId.CYBER:
+      return USDC_CYBER;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }

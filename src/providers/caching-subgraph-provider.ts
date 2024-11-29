@@ -30,6 +30,7 @@ import {
   USDC_BASE,
   USDC_BNB,
   USDC_BOB,
+  USDC_CYBER,
   USDC_MAINNET,
   USDC_MOONBEAM,
   USDC_NATIVE_ARBITRUM,
@@ -130,6 +131,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ],
   [ChainId.ZERO]: [WRAPPED_NATIVE_CURRENCY[ChainId.ZERO]!, USDC_ZERO],
   [ChainId.BOB]: [WRAPPED_NATIVE_CURRENCY[ChainId.BOB]!, USDC_BOB],
+  [ChainId.CYBER]: [WRAPPED_NATIVE_CURRENCY[ChainId.CYBER]!, USDC_CYBER],
 };
 
 export interface IV3SubgraphProvider {

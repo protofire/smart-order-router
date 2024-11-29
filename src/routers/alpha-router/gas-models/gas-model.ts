@@ -34,6 +34,7 @@ import {
   USDC_BOB,
   USDC_BRIDGED_AVAX,
   USDC_CELO,
+  USDC_CYBER,
   USDC_ETHEREUM_GNOSIS,
   USDC_GOERLI,
   USDC_MAINNET,
@@ -128,6 +129,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.ABSTRACT_TESTNET]: [USDC_ABSTRACT_TESTNET],
   [ChainId.ZERO]: [USDC_ZERO],
   [ChainId.BOB]: [USDC_BOB],
+  [ChainId.CYBER]: [USDC_CYBER],
 };
 
 export type L1ToL2GasCosts = {
