@@ -50,6 +50,7 @@ import {
   USDC_OPTIMISM_SEPOLIA,
   USDC_POLYGON,
   USDC_SEPOLIA,
+  USDC_SHAPE,
   USDC_WORMHOLE_CELO,
   USDC_ZERO,
   USDC_ZKSYNC,
@@ -130,6 +131,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.ZERO]: [USDC_ZERO],
   [ChainId.BOB]: [USDC_BOB],
   [ChainId.CYBER]: [USDC_CYBER],
+  [ChainId.SHAPE]: [USDC_SHAPE],
 };
 
 export type L1ToL2GasCosts = {

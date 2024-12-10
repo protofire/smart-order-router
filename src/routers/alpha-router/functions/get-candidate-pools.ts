@@ -231,6 +231,7 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.ZERO]: [WRAPPED_NATIVE_CURRENCY[ChainId.ZERO]!],
   [ChainId.BOB]: [WRAPPED_NATIVE_CURRENCY[ChainId.BOB]!],
   [ChainId.CYBER]: [WRAPPED_NATIVE_CURRENCY[ChainId.CYBER]!],
+  [ChainId.SHAPE]: [WRAPPED_NATIVE_CURRENCY[ChainId.SHAPE]!],
 };
 
 class SubcategorySelectionPools<SubgraphPool> {

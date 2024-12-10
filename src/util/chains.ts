@@ -125,6 +125,8 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.BOB;
     case 7560:
       return ChainId.CYBER;
+    case 360:
+      return ChainId.SHAPE;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -157,6 +159,7 @@ export enum ChainName {
   ZERO = 'zero',
   BOB = 'bob',
   CYBER = 'cyeth',
+  SHAPE = 'shape',
 }
 
 export enum NativeCurrencyName {
@@ -268,6 +271,11 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     'ETHER',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
+  [ChainId.SHAPE]: [
+    'ETH',
+    'ETHER',
+    '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+  ],
 };
 
 export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
@@ -352,6 +360,8 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.BOB;
     case 7560:
       return ChainName.CYBER;
+    case 360:
+      return ChainName.SHAPE;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -409,6 +419,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_BOB!;
     case ChainId.CYBER:
       return process.env.JSON_RPC_PROVIDER_CYBER!;
+    case ChainId.SHAPE:
+      return process.env.JSON_RPC_PROVIDER_SHAPE!;
     default:
       throw new Error(`Chain id: ${id} not supported`);
   }
@@ -608,6 +620,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.CYBER]: new Token(
     ChainId.CYBER,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.SHAPE]: new Token(
+    ChainId.SHAPE,
     '0x4200000000000000000000000000000000000006',
     18,
     'WETH',
