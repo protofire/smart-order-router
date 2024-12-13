@@ -45,6 +45,7 @@ export const V2_SUPPORTED = [
   ChainId.ABSTRACT_TESTNET,
   ChainId.ZERO,
   ChainId.CYBER,
+  ChainId.SHAPE,
 ];
 
 export const V4_SUPPORTED = [ChainId.SEPOLIA];
