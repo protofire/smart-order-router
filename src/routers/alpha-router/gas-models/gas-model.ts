@@ -37,6 +37,7 @@ import {
   USDC_CYBER,
   USDC_ETHEREUM_GNOSIS,
   USDC_GOERLI,
+  USDC_INK,
   USDC_MAINNET,
   USDC_MOONBEAM,
   USDC_NATIVE_ARBITRUM,
@@ -132,6 +133,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.BOB]: [USDC_BOB],
   [ChainId.CYBER]: [USDC_CYBER],
   [ChainId.SHAPE]: [USDC_SHAPE],
+  [ChainId.INK]: [USDC_INK],
 };
 
 export type L1ToL2GasCosts = {

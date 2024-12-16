@@ -736,6 +736,14 @@ export const USDC_SHAPE = new Token(
   'USDC'
 );
 
+export const USDC_INK = new Token(
+  ChainId.INK,
+  '0x0000000000000000000000000000000000000000', // Placeholder address.
+  6,
+  'USDC',
+  'USDC'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,
@@ -1019,6 +1027,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_CYBER;
     case ChainId.SHAPE:
       return USDC_SHAPE;
+    case ChainId.INK:
+      return USDC_INK;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }

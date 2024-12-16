@@ -91,6 +91,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST = (
     [ChainId.BOB]: [WRAPPED_NATIVE_CURRENCY[ChainId.BOB]!],
     [ChainId.CYBER]: [WRAPPED_NATIVE_CURRENCY[ChainId.CYBER]!],
     [ChainId.SHAPE]: [WRAPPED_NATIVE_CURRENCY[ChainId.SHAPE]!],
+    [ChainId.INK]: [WRAPPED_NATIVE_CURRENCY[ChainId.INK]!],
   };
 };
 

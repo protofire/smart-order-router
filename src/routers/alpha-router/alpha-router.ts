@@ -638,6 +638,7 @@ export class AlphaRouter
         case ChainId.BOB:
         case ChainId.CYBER:
         case ChainId.SHAPE:
+        case ChainId.INK:
           this.onChainQuoteProvider = new OnChainQuoteProvider(
             chainId,
             provider,
