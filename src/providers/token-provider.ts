@@ -744,11 +744,27 @@ export const USDC_INK = new Token(
   'USDC'
 );
 
+export const USDC_REDSTONE_GARNET = new Token(
+  ChainId.REDSTONE_GARNET,
+  '0xD2cA61F265a2dA2d2CD7607F05C26eBfA18AD5F6',
+  6,
+  'mUSDC',
+  'Mock USDC'
+);
+
+export const USDC_REDSTONE = new Token(
+  ChainId.REDSTONE,
+  '0xD5d59fC063e7548b6015A36fEb10B875924A19be',
+  6,
+  'USDC.e',
+  'Bridged USDC (Lattice)'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,
     protected multicall2Provider: IMulticallProvider
-  ) {}
+  ) { }
 
   private async getTokenSymbol(
     addresses: string[],
@@ -893,10 +909,8 @@ export class TokenProvider implements ITokenProvider {
       }
 
       log.info(
-        `Got token symbol and decimals for ${
-          Object.values(addressToToken).length
-        } out of ${addresses.length} tokens on-chain ${
-          providerConfig ? `as of: ${providerConfig?.blockNumber}` : ''
+        `Got token symbol and decimals for ${Object.values(addressToToken).length
+        } out of ${addresses.length} tokens on-chain ${providerConfig ? `as of: ${providerConfig?.blockNumber}` : ''
         }`
       );
     }
@@ -1029,6 +1043,10 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_SHAPE;
     case ChainId.INK:
       return USDC_INK;
+    case ChainId.REDSTONE_GARNET:
+      return USDC_REDSTONE_GARNET;
+    case ChainId.REDSTONE:
+      return USDC_REDSTONE;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }

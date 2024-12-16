@@ -35,6 +35,8 @@ import {
   USDC_NATIVE_ARBITRUM,
   USDC_OPTIMISM,
   USDC_POLYGON,
+  USDC_REDSTONE,
+  USDC_REDSTONE_GARNET,
   USDC_SHAPE,
   USDC_ZERO,
   USDC_ZKSYNC,
@@ -135,6 +137,8 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.CYBER]: [WRAPPED_NATIVE_CURRENCY[ChainId.CYBER]!, USDC_CYBER],
   [ChainId.SHAPE]: [WRAPPED_NATIVE_CURRENCY[ChainId.SHAPE]!, USDC_SHAPE],
   [ChainId.INK]: [WRAPPED_NATIVE_CURRENCY[ChainId.INK]!, USDC_INK],
+  [ChainId.REDSTONE]: [WRAPPED_NATIVE_CURRENCY[ChainId.REDSTONE]!, USDC_REDSTONE],
+  [ChainId.REDSTONE_GARNET]: [WRAPPED_NATIVE_CURRENCY[ChainId.REDSTONE_GARNET]!, USDC_REDSTONE_GARNET],
 };
 
 /**
@@ -150,7 +154,7 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  * @class StaticV2SubgraphProvider
  */
 export class StaticV2SubgraphProvider implements IV2SubgraphProvider {
-  constructor(private chainId: ChainId) {}
+  constructor(private chainId: ChainId) { }
 
   public async getPools(
     tokenIn?: Token,
