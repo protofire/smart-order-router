@@ -738,10 +738,10 @@ export const USDC_SHAPE = new Token(
 
 export const USDC_INK = new Token(
   ChainId.INK,
-  '0x0000000000000000000000000000000000000000', // Placeholder address.
+  '0xF1815bd50389c46847f0Bda824eC8da914045D14',
   6,
-  'USDC',
-  'USDC'
+  'USDC.e',
+  'Bridged USDC (Stargate)'
 );
 
 export const USDC_REDSTONE_GARNET = new Token(
