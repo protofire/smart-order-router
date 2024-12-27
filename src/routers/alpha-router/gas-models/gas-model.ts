@@ -24,6 +24,7 @@ import {
   DAI_ZKSYNC,
   USDB_BLAST,
   USDCE_ZKSYNC,
+  USDC_ABSTRACT_MAINNET,
   USDC_ABSTRACT_TESTNET,
   USDC_ARBITRUM,
   USDC_ARBITRUM_GOERLI,
@@ -138,6 +139,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.INK]: [USDC_INK],
   [ChainId.REDSTONE]: [USDC_REDSTONE],
   [ChainId.REDSTONE_GARNET]: [USDC_REDSTONE_GARNET],
+  [ChainId.ABSTRACT_MAINNET]: [USDC_ABSTRACT_MAINNET],
 };
 
 export type L1ToL2GasCosts = {

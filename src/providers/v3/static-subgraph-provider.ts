@@ -33,6 +33,7 @@ import {
   OP_OPTIMISM,
   USDB_BLAST,
   USDCE_ZKSYNC,
+  USDC_ABSTRACT_MAINNET,
   USDC_ABSTRACT_TESTNET,
   USDC_ARBITRUM,
   USDC_ARBITRUM_GOERLI,
@@ -192,8 +193,18 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.CYBER]: [WRAPPED_NATIVE_CURRENCY[ChainId.CYBER]!, USDC_CYBER],
   [ChainId.SHAPE]: [WRAPPED_NATIVE_CURRENCY[ChainId.SHAPE]!, USDC_SHAPE],
   [ChainId.INK]: [WRAPPED_NATIVE_CURRENCY[ChainId.INK]!, USDC_INK],
-  [ChainId.REDSTONE]: [WRAPPED_NATIVE_CURRENCY[ChainId.REDSTONE]!, USDC_REDSTONE],
-  [ChainId.REDSTONE_GARNET]: [WRAPPED_NATIVE_CURRENCY[ChainId.REDSTONE_GARNET]!, USDC_REDSTONE_GARNET],
+  [ChainId.REDSTONE]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.REDSTONE]!,
+    USDC_REDSTONE,
+  ],
+  [ChainId.REDSTONE_GARNET]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.REDSTONE_GARNET]!,
+    USDC_REDSTONE_GARNET,
+  ],
+  [ChainId.ABSTRACT_MAINNET]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.ABSTRACT_MAINNET]!,
+    USDC_ABSTRACT_MAINNET,
+  ],
 };
 
 /**
@@ -211,7 +222,7 @@ export class StaticV3SubgraphProvider implements IV3SubgraphProvider {
   constructor(
     private chainId: ChainId,
     private poolProvider: IV3PoolProvider
-  ) { }
+  ) {}
 
   public async getPools(
     tokenIn?: Token,

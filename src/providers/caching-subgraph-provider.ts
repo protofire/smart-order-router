@@ -24,6 +24,7 @@ import {
   OP_OPTIMISM,
   USDB_BLAST,
   USDCE_ZKSYNC,
+  USDC_ABSTRACT_MAINNET,
   USDC_ABSTRACT_TESTNET,
   USDC_ARBITRUM,
   USDC_AVAX,
@@ -138,8 +139,18 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.CYBER]: [WRAPPED_NATIVE_CURRENCY[ChainId.CYBER]!, USDC_CYBER],
   [ChainId.SHAPE]: [WRAPPED_NATIVE_CURRENCY[ChainId.SHAPE]!, USDC_SHAPE],
   [ChainId.INK]: [WRAPPED_NATIVE_CURRENCY[ChainId.INK]!, USDC_INK],
-  [ChainId.REDSTONE]: [WRAPPED_NATIVE_CURRENCY[ChainId.REDSTONE]!, USDC_REDSTONE],
-  [ChainId.REDSTONE_GARNET]: [WRAPPED_NATIVE_CURRENCY[ChainId.REDSTONE_GARNET]!, USDC_REDSTONE_GARNET],
+  [ChainId.REDSTONE]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.REDSTONE]!,
+    USDC_REDSTONE,
+  ],
+  [ChainId.REDSTONE_GARNET]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.REDSTONE_GARNET]!,
+    USDC_REDSTONE_GARNET,
+  ],
+  [ChainId.ABSTRACT_MAINNET]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.ABSTRACT_MAINNET]!,
+    USDC_ABSTRACT_MAINNET,
+  ],
 };
 
 export interface IV3SubgraphProvider {
@@ -160,7 +171,8 @@ export interface ISubgraphProvider<TSubgraphPool extends SubgraphPool> {
 
 export abstract class CachingSubgraphProvider<
   TSubgraphPool extends SubgraphPool
-> implements ISubgraphProvider<TSubgraphPool> {
+> implements ISubgraphProvider<TSubgraphPool>
+{
   private SUBGRAPH_KEY = (chainId: ChainId) =>
     `subgraph-pools-${this.protocol}-${chainId}`;
 
@@ -176,7 +188,7 @@ export abstract class CachingSubgraphProvider<
     protected subgraphProvider: ISubgraphProvider<TSubgraphPool>,
     private cache: ICache<TSubgraphPool[]>,
     private protocol: Protocol
-  ) { }
+  ) {}
 
   public async getPools(): Promise<TSubgraphPool[]> {
     const cachedPools = await this.cache.get(this.SUBGRAPH_KEY(this.chainId));
