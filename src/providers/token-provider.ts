@@ -768,6 +768,14 @@ export const USDC_ABSTRACT_MAINNET = new Token(
   'Bridged USDC'
 );
 
+export const USDC_ANIME_TESTNET = new Token(
+  ChainId.ANIME_TESTNET,
+  '0x0000000000000000000000000000000000000000',
+  6,
+  'USDC',
+  'Place Holder USDC'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,
@@ -1059,6 +1067,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_REDSTONE;
     case ChainId.ABSTRACT_MAINNET:
       return USDC_ABSTRACT_MAINNET;
+    case ChainId.ANIME_TESTNET:
+      return USDC_ANIME_TESTNET;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }

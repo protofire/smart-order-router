@@ -240,6 +240,7 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.ABSTRACT_MAINNET]: [
     WRAPPED_NATIVE_CURRENCY[ChainId.ABSTRACT_MAINNET]!,
   ],
+  [ChainId.ANIME_TESTNET]: [WRAPPED_NATIVE_CURRENCY[ChainId.ANIME_TESTNET]!],
 };
 
 class SubcategorySelectionPools<SubgraphPool> {
