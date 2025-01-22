@@ -770,10 +770,10 @@ export const USDC_ABSTRACT_MAINNET = new Token(
 
 export const USDC_ANIME_TESTNET = new Token(
   ChainId.ANIME_TESTNET,
-  '0x0000000000000000000000000000000000000000',
+  '0x69D30A49fcbaB7142d604635772B7Eef958aE0bd',
   6,
   'USDC',
-  'Place Holder USDC'
+  'USDC'
 );
 
 export class TokenProvider implements ITokenProvider {
