@@ -198,6 +198,7 @@ export enum NativeCurrencyName {
   MOONBEAM = 'GLMR',
   BNB = 'BNB',
   AVALANCHE = 'AVAX',
+  ANIME_TESTNET = 'ANIME',
 }
 
 export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
@@ -319,8 +320,8 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
   [ChainId.ANIME_TESTNET]: [
-    'ETH',
-    'ETHER',
+    'ANIME',
+    'ANIME',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
 };
@@ -356,7 +357,7 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.REDSTONE]: NativeCurrencyName.ETHER,
   [ChainId.REDSTONE_GARNET]: NativeCurrencyName.ETHER,
   [ChainId.ABSTRACT_MAINNET]: NativeCurrencyName.ETHER,
-  [ChainId.ANIME_TESTNET]: NativeCurrencyName.ETHER,
+  [ChainId.ANIME_TESTNET]: NativeCurrencyName.ANIME_TESTNET,
 };
 
 export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
