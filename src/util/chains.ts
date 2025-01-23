@@ -320,8 +320,8 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
   [ChainId.ANIME_TESTNET]: [
-    'ANIME',
-    'ANIME',
+    'ETH',
+    'ETHER',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
 };
@@ -357,7 +357,7 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.REDSTONE]: NativeCurrencyName.ETHER,
   [ChainId.REDSTONE_GARNET]: NativeCurrencyName.ETHER,
   [ChainId.ABSTRACT_MAINNET]: NativeCurrencyName.ETHER,
-  [ChainId.ANIME_TESTNET]: NativeCurrencyName.ANIME_TESTNET,
+  [ChainId.ANIME_TESTNET]: NativeCurrencyName.ETHER,
 };
 
 export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
