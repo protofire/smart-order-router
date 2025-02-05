@@ -776,6 +776,14 @@ export const USDC_ANIME_TESTNET = new Token(
   'USDC'
 );
 
+export const USDC_MODE = new Token(
+  ChainId.MODE,
+  '0xd988097fb8612cc24eec14542bc03424c656005f',
+  6,
+  'USDC',
+  'USDC'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,

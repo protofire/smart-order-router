@@ -58,6 +58,8 @@ export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {
     CHAIN_TO_ADDRESSES_MAP[ChainId.ABSTRACT_MAINNET].v3CoreFactoryAddress,
   [ChainId.ANIME_TESTNET]:
     CHAIN_TO_ADDRESSES_MAP[ChainId.ANIME_TESTNET].v3CoreFactoryAddress,
+  [ChainId.MODE]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.MODE].v3CoreFactoryAddress,
   // TODO: Gnosis + Moonbeam contracts to be deployed
 };
 
@@ -97,6 +99,8 @@ export const QUOTER_V2_ADDRESSES: AddressMap = {
     CHAIN_TO_ADDRESSES_MAP[ChainId.ABSTRACT_MAINNET].quoterAddress,
   [ChainId.ANIME_TESTNET]:
     CHAIN_TO_ADDRESSES_MAP[ChainId.ANIME_TESTNET].quoterAddress,
+  [ChainId.MODE]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.MODE].quoterAddress,
   // TODO: Gnosis + Moonbeam contracts to be deployed
 };
 
@@ -170,6 +174,8 @@ export const UNISWAP_MULTICALL_ADDRESSES: AddressMap = {
     CHAIN_TO_ADDRESSES_MAP[ChainId.ABSTRACT_MAINNET].multicallAddress,
   [ChainId.ANIME_TESTNET]:
     CHAIN_TO_ADDRESSES_MAP[ChainId.ANIME_TESTNET].multicallAddress,
+  [ChainId.MODE]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.MODE].multicallAddress,
   // TODO: Gnosis + Moonbeam contracts to be deployed
 };
 
@@ -398,6 +404,13 @@ export const WETH9: {
   [ChainId.ANIME_TESTNET]: new Token(
     ChainId.ANIME_TESTNET,
     '0x8f3e2785985aa4005c63f97f7cc89ce91a948267',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.MODE]: new Token(
+    ChainId.MODE,
+    '0x4200000000000000000000000000000000000006',
     18,
     'WETH',
     'Wrapped Ether'

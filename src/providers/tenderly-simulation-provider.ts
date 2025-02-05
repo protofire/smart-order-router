@@ -157,6 +157,7 @@ export const TENDERLY_NOT_SUPPORTED_CHAINS = [
   ChainId.REDSTONE_GARNET,
   ChainId.ABSTRACT_MAINNET,
   ChainId.ANIME_TESTNET,
+  ChainId.MODE,
 ];
 
 // We multiply tenderly gas limit by this to overestimate gas limit

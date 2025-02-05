@@ -41,6 +41,7 @@ import {
   USDC_GOERLI,
   USDC_INK,
   USDC_MAINNET,
+  USDC_MODE,
   USDC_MOONBEAM,
   USDC_NATIVE_ARBITRUM,
   USDC_NATIVE_AVAX,
@@ -142,6 +143,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.REDSTONE_GARNET]: [USDC_REDSTONE_GARNET],
   [ChainId.ABSTRACT_MAINNET]: [USDC_ABSTRACT_MAINNET],
   [ChainId.ANIME_TESTNET]: [USDC_ANIME_TESTNET],
+  [ChainId.MODE]: [USDC_MODE],
 };
 
 export type L1ToL2GasCosts = {

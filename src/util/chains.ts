@@ -34,6 +34,7 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.INK,
   ChainId.ABSTRACT_MAINNET,
   ChainId.ANIME_TESTNET,
+  ChainId.MODE,
   // Gnosis and Moonbeam don't yet have contracts deployed yet
 ];
 
@@ -54,8 +55,10 @@ export const V2_SUPPORTED = [
   // Enable once supported
   // ChainId.REDSTONE,
   // ChainId.REDSTONE_GARNET,
+  // ChainId.BOB,
   ChainId.ABSTRACT_MAINNET,
   ChainId.ANIME_TESTNET,
+  ChainId.MODE,
 ];
 
 export const V4_SUPPORTED = [ChainId.SEPOLIA];
@@ -149,6 +152,8 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.ABSTRACT_MAINNET;
     case 6900:
       return ChainId.ANIME_TESTNET;
+    case 34443:
+      return ChainId.MODE;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -187,6 +192,7 @@ export enum ChainName {
   REDSTONE_GARNET = 'redstone-garnet',
   ABSTRACT_MAINNET = 'abstract',
   ANIME_TESTNET = 'anime-testnet',
+  MODE = 'mode',
 }
 
 export enum NativeCurrencyName {
@@ -198,7 +204,7 @@ export enum NativeCurrencyName {
   MOONBEAM = 'GLMR',
   BNB = 'BNB',
   AVALANCHE = 'AVAX',
-  ANIME_TESTNET = 'ANIME',
+  ANIME = 'ANIME',
 }
 
 export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
@@ -324,6 +330,11 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     'ETHER',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
+  [ChainId.MODE]: [
+    'ETH',
+    'ETHER',
+    '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+  ],
 };
 
 export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
@@ -358,6 +369,7 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.REDSTONE_GARNET]: NativeCurrencyName.ETHER,
   [ChainId.ABSTRACT_MAINNET]: NativeCurrencyName.ETHER,
   [ChainId.ANIME_TESTNET]: NativeCurrencyName.ETHER,
+  [ChainId.MODE]: NativeCurrencyName.ETHER
 };
 
 export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
@@ -426,6 +438,8 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.ABSTRACT_MAINNET;
     case 6900:
       return ChainName.ANIME_TESTNET;
+    case 34443:
+      return ChainName.MODE;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -495,6 +509,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_ABSTRACT_MAINNET!;
     case ChainId.ANIME_TESTNET:
       return process.env.JSON_RPC_PROVIDER_ANIME_TESTNET!;
+    case ChainId.MODE:
+      return process.env.JSON_RPC_PROVIDER_MODE!;
     default:
       throw new Error(`Chain id: ${id} not supported`);
   }
@@ -737,6 +753,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
   [ChainId.ANIME_TESTNET]: new Token(
     ChainId.ANIME_TESTNET,
     '0x8f3e2785985aa4005c63f97f7cc89ce91a948267',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.MODE]: new Token(
+    ChainId.MODE,
+    '0x4200000000000000000000000000000000000006',
     18,
     'WETH',
     'Wrapped Ether'
