@@ -28,6 +28,7 @@ import {
   ITokenProvider,
   TokenAccessor,
   USDB_BLAST,
+  USDC_ANIME,
   USDC_ARBITRUM,
   USDC_ARBITRUM_GOERLI,
   USDC_ARBITRUM_SEPOLIA,
@@ -200,6 +201,10 @@ export const CACHE_SEED_TOKENS: {
   },
   [ChainId.ANIME_TESTNET]: {
     WETH: WRAPPED_NATIVE_CURRENCY[ChainId.ANIME_TESTNET],
+  },
+  [ChainId.ANIME]: {
+    WANIME: WRAPPED_NATIVE_CURRENCY[ChainId.ANIME],
+    USDC: USDC_ANIME,
   },
   [ChainId.MODE]: {
     WETH: WRAPPED_NATIVE_CURRENCY[ChainId.MODE],

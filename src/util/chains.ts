@@ -34,6 +34,7 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.INK,
   ChainId.ABSTRACT_MAINNET,
   ChainId.ANIME_TESTNET,
+  ChainId.ANIME,
   ChainId.MODE,
   // Gnosis and Moonbeam don't yet have contracts deployed yet
 ];
@@ -152,6 +153,8 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.ABSTRACT_MAINNET;
     case 6900:
       return ChainId.ANIME_TESTNET;
+    case 69000:
+      return ChainId.ANIME;
     case 34443:
       return ChainId.MODE;
     default:
@@ -192,6 +195,7 @@ export enum ChainName {
   REDSTONE_GARNET = 'redstone-garnet',
   ABSTRACT_MAINNET = 'abstract',
   ANIME_TESTNET = 'anime-testnet',
+  ANIME = 'anime',
   MODE = 'mode',
 }
 
@@ -204,6 +208,7 @@ export enum NativeCurrencyName {
   MOONBEAM = 'GLMR',
   BNB = 'BNB',
   AVALANCHE = 'AVAX',
+  ANIME_TESTNET = 'ANIME',
   ANIME = 'ANIME',
 }
 
@@ -330,6 +335,11 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     'ETHER',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
+  [ChainId.ANIME]: [
+    'ANIME',
+    'ANIME',
+    '0x0000000000000000000000000000000000000000',
+  ],
   [ChainId.MODE]: [
     'ETH',
     'ETHER',
@@ -369,7 +379,8 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.REDSTONE_GARNET]: NativeCurrencyName.ETHER,
   [ChainId.ABSTRACT_MAINNET]: NativeCurrencyName.ETHER,
   [ChainId.ANIME_TESTNET]: NativeCurrencyName.ETHER,
-  [ChainId.MODE]: NativeCurrencyName.ETHER
+  [ChainId.ANIME]: NativeCurrencyName.ANIME,
+  [ChainId.MODE]: NativeCurrencyName.ETHER,
 };
 
 export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
@@ -438,6 +449,8 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.ABSTRACT_MAINNET;
     case 6900:
       return ChainName.ANIME_TESTNET;
+    case 69000:
+      return ChainName.ANIME;
     case 34443:
       return ChainName.MODE;
     default:
@@ -509,6 +522,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_ABSTRACT_MAINNET!;
     case ChainId.ANIME_TESTNET:
       return process.env.JSON_RPC_PROVIDER_ANIME_TESTNET!;
+    case ChainId.ANIME:
+      return process.env.JSON_RPC_PROVIDER_ANIME!;
     case ChainId.MODE:
       return process.env.JSON_RPC_PROVIDER_MODE!;
     default:
@@ -757,6 +772,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     'WETH',
     'Wrapped Ether'
   ),
+  [ChainId.ANIME]: new Token(
+    ChainId.ANIME,
+    '0x164906a76f1A2Ea933366c446AE0Ec6a37062c42',
+    18,
+    'WANIME',
+    'Wrapped ANIME'
+  ),
   [ChainId.MODE]: new Token(
     ChainId.MODE,
     '0x4200000000000000000000000000000000000006',
@@ -866,6 +888,30 @@ class BnbNativeCurrency extends NativeCurrency {
   }
 }
 
+function isAnime(chainId: number): chainId is ChainId.ANIME {
+  return chainId === ChainId.ANIME;
+}
+
+class AnimeNativeCurrency extends NativeCurrency {
+  equals(other: Currency): boolean {
+    return other.isNative && other.chainId === this.chainId;
+  }
+
+  get wrapped(): Token {
+    if (!isAnime(this.chainId)) throw new Error('Not anime');
+    const nativeCurrency = WRAPPED_NATIVE_CURRENCY[this.chainId];
+    if (nativeCurrency) {
+      return nativeCurrency;
+    }
+    throw new Error(`Does not support this chain ${this.chainId}`);
+  }
+
+  public constructor(chainId: number) {
+    if (!isAnime(chainId)) throw new Error('Not anime');
+    super(chainId, 18, 'ANIME', 'ANIME');
+  }
+}
+
 function isMoonbeam(chainId: number): chainId is ChainId.MOONBEAM {
   return chainId === ChainId.MOONBEAM;
 }
@@ -951,6 +997,8 @@ export function nativeOnChain(chainId: number): NativeCurrency {
     cachedNativeCurrency[chainId] = new BnbNativeCurrency(chainId);
   } else if (isAvax(chainId)) {
     cachedNativeCurrency[chainId] = new AvalancheNativeCurrency(chainId);
+  } else if (isAnime(chainId)) {
+    cachedNativeCurrency[chainId] = new AnimeNativeCurrency(chainId);
   } else {
     cachedNativeCurrency[chainId] = ExtendedEther.onChain(chainId);
   }

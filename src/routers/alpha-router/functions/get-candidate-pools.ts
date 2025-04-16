@@ -36,6 +36,7 @@ import {
   FEI_MAINNET,
   ITokenProvider,
   USDB_BLAST,
+  USDC_ANIME,
   USDC_ARBITRUM,
   USDC_ARBITRUM_GOERLI,
   USDC_AVAX,
@@ -241,6 +242,7 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
     WRAPPED_NATIVE_CURRENCY[ChainId.ABSTRACT_MAINNET]!,
   ],
   [ChainId.ANIME_TESTNET]: [WRAPPED_NATIVE_CURRENCY[ChainId.ANIME_TESTNET]!],
+  [ChainId.ANIME]: [WRAPPED_NATIVE_CURRENCY[ChainId.ANIME]!, USDC_ANIME],
   [ChainId.MODE]: [WRAPPED_NATIVE_CURRENCY[ChainId.MODE]!],
 };
 

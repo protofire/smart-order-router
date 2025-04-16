@@ -643,6 +643,7 @@ export class AlphaRouter
         case ChainId.REDSTONE_GARNET:
         case ChainId.ANIME_TESTNET:
         case ChainId.MODE:
+        case ChainId.ANIME:
           this.onChainQuoteProvider = new OnChainQuoteProvider(
             chainId,
             provider,
