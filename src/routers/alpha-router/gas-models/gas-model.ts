@@ -43,6 +43,7 @@ import {
   USDC_INK,
   USDC_MAINNET,
   USDC_MODE,
+  USDC_FLOW_TESTNET,
   USDC_MOONBEAM,
   USDC_NATIVE_ARBITRUM,
   USDC_NATIVE_AVAX,
@@ -146,6 +147,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.ANIME_TESTNET]: [USDC_ANIME_TESTNET],
   [ChainId.ANIME]: [USDC_ANIME],
   [ChainId.MODE]: [USDC_MODE],
+  [ChainId.FLOW_TESTNET]: [USDC_FLOW_TESTNET],
 };
 
 export type L1ToL2GasCosts = {

@@ -792,6 +792,14 @@ export const USDC_MODE = new Token(
   'USDC'
 );
 
+export const USDC_FLOW_TESTNET = new Token(
+  ChainId.FLOW_TESTNET,
+  '0x5e65b6B04fbA51D95409712978Cb91E99d93aE73',
+  6,
+  'USDC',
+  'USDC'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,
@@ -1087,6 +1095,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_ANIME;
     case ChainId.ANIME_TESTNET:
       return USDC_ANIME_TESTNET;
+    case ChainId.FLOW_TESTNET:
+      return USDC_FLOW_TESTNET;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }

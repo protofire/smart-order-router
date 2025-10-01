@@ -43,6 +43,7 @@ import {
   USDC_BASE,
   USDC_BNB,
   USDC_ETHEREUM_GNOSIS,
+  USDC_FLOW_TESTNET,
   USDC_MAINNET,
   USDC_MOONBEAM,
   USDC_OPTIMISM,
@@ -244,6 +245,7 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.ANIME_TESTNET]: [WRAPPED_NATIVE_CURRENCY[ChainId.ANIME_TESTNET]!],
   [ChainId.ANIME]: [WRAPPED_NATIVE_CURRENCY[ChainId.ANIME]!, USDC_ANIME],
   [ChainId.MODE]: [WRAPPED_NATIVE_CURRENCY[ChainId.MODE]!],
+  [ChainId.FLOW_TESTNET]: [WRAPPED_NATIVE_CURRENCY[ChainId.FLOW_TESTNET]!, USDC_FLOW_TESTNET],
 };
 
 class SubcategorySelectionPools<SubgraphPool> {
