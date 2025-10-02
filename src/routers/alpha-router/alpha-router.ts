@@ -644,6 +644,7 @@ export class AlphaRouter
         case ChainId.MODE:
         case ChainId.ANIME:
         case ChainId.FLOW_TESTNET:
+        case ChainId.FLOW_MAINNET:
           this.onChainQuoteProvider = new OnChainQuoteProvider(
             chainId,
             provider,
