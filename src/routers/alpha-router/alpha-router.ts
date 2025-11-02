@@ -631,6 +631,7 @@ export class AlphaRouter
           );
           break;
         case ChainId.BASE:
+        case ChainId.BASE_SEPOLIA:
         case ChainId.BLAST:
         case ChainId.ZORA:
         case ChainId.BASE_GOERLI:
