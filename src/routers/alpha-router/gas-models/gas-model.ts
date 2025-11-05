@@ -19,6 +19,7 @@ import {
   USDC_ARBITRUM_GOERLI,
   USDC_AVAX,
   USDC_BASE,
+  USDC_BASE_SEPOLIA,
   USDC_BNB,
   USDC_ETHEREUM_GNOSIS,
   USDC_GOERLI,
@@ -78,6 +79,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.BASE]: [USDC_BASE],
   [ChainId.ZORA]: [USDC_ZORA],
   [ChainId.ZORA_SEPOLIA]: [USDC_ZORA_SEPOLIA],
+  [ChainId.BASE_SEPOLIA]: [USDC_BASE_SEPOLIA],
 };
 
 export type L1ToL2GasCosts = {

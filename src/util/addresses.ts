@@ -20,6 +20,7 @@ export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {
   [ChainId.AVALANCHE]: CHAIN_TO_ADDRESSES_MAP[ChainId.AVALANCHE].v3CoreFactoryAddress,
   [ChainId.BASE_GOERLI]: CHAIN_TO_ADDRESSES_MAP[ChainId.BASE_GOERLI].v3CoreFactoryAddress,
   [ChainId.BASE]: CHAIN_TO_ADDRESSES_MAP[ChainId.BASE].v3CoreFactoryAddress,
+  [ChainId.BASE_SEPOLIA]: CHAIN_TO_ADDRESSES_MAP[ChainId.BASE_SEPOLIA].v3CoreFactoryAddress,
   [ChainId.ZORA]: CHAIN_TO_ADDRESSES_MAP[ChainId.ZORA].v3CoreFactoryAddress,
   [ChainId.ZORA_SEPOLIA]: CHAIN_TO_ADDRESSES_MAP[ChainId.ZORA_SEPOLIA].v3CoreFactoryAddress,
   // TODO: Gnosis + Moonbeam contracts to be deployed
@@ -36,14 +37,15 @@ export const QUOTER_V2_ADDRESSES: AddressMap = {
   [ChainId.AVALANCHE]: CHAIN_TO_ADDRESSES_MAP[ChainId.AVALANCHE].quoterAddress,
   [ChainId.BASE_GOERLI]: CHAIN_TO_ADDRESSES_MAP[ChainId.BASE_GOERLI].quoterAddress,
   [ChainId.BASE]: CHAIN_TO_ADDRESSES_MAP[ChainId.BASE].quoterAddress,
+  [ChainId.BASE_SEPOLIA]: CHAIN_TO_ADDRESSES_MAP[ChainId.BASE_SEPOLIA].quoterAddress,
   [ChainId.ZORA]: CHAIN_TO_ADDRESSES_MAP[ChainId.ZORA].quoterAddress,
   [ChainId.ZORA_SEPOLIA]: CHAIN_TO_ADDRESSES_MAP[ChainId.ZORA_SEPOLIA].quoterAddress,
   // TODO: Gnosis + Moonbeam contracts to be deployed
 };
 
 export const MIXED_ROUTE_QUOTER_V1_ADDRESSES: AddressMap = {
-  [ChainId.MAINNET]: CHAIN_TO_ADDRESSES_MAP[ChainId.MAINNET].v1MixedRouteQuoterAddress,
-  [ChainId.GOERLI]: CHAIN_TO_ADDRESSES_MAP[ChainId.GOERLI].v1MixedRouteQuoterAddress,
+  [ChainId.MAINNET]: CHAIN_TO_ADDRESSES_MAP[ChainId.MAINNET].mixedRouteQuoterV1Address,
+  [ChainId.GOERLI]: CHAIN_TO_ADDRESSES_MAP[ChainId.GOERLI].mixedRouteQuoterV1Address,
 };
 
 export const UNISWAP_MULTICALL_ADDRESSES: AddressMap = {
@@ -57,6 +59,7 @@ export const UNISWAP_MULTICALL_ADDRESSES: AddressMap = {
   [ChainId.AVALANCHE]: CHAIN_TO_ADDRESSES_MAP[ChainId.AVALANCHE].multicallAddress,
   [ChainId.BASE_GOERLI]: CHAIN_TO_ADDRESSES_MAP[ChainId.BASE_GOERLI].multicallAddress,
   [ChainId.BASE]: CHAIN_TO_ADDRESSES_MAP[ChainId.BASE].multicallAddress,
+  [ChainId.BASE_SEPOLIA]: CHAIN_TO_ADDRESSES_MAP[ChainId.BASE_SEPOLIA].multicallAddress,
   [ChainId.ZORA]: CHAIN_TO_ADDRESSES_MAP[ChainId.ZORA].multicallAddress,
   [ChainId.ZORA_SEPOLIA]: CHAIN_TO_ADDRESSES_MAP[ChainId.ZORA_SEPOLIA].multicallAddress,
   // TODO: Gnosis + Moonbeam contracts to be deployed
@@ -109,6 +112,22 @@ export const WETH9: {
     | ChainId.ARBITRUM_SEPOLIA
     | ChainId.OPTIMISM_SEPOLIA
     | ChainId.ROOTSTOCK
+    | ChainId.BLAST
+    | ChainId.ZKSYNC
+    | ChainId.ABSTRACT_TESTNET
+    | ChainId.ABSTRACT_MAINNET
+    | ChainId.ZERO
+    | ChainId.BOB
+    | ChainId.CYBER
+    | ChainId.SHAPE
+    | ChainId.INK
+    | ChainId.REDSTONE_GARNET
+    | ChainId.REDSTONE
+    | ChainId.ANIME
+    | ChainId.ANIME_TESTNET
+    | ChainId.MODE
+    | ChainId.FLOW_TESTNET
+    | ChainId.FLOW_MAINNET
   >]: Token;
 } = {
   [ChainId.MAINNET]: new Token(
@@ -169,6 +188,13 @@ export const WETH9: {
   ),
   [ChainId.BASE]: new Token(
     ChainId.BASE,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.BASE_SEPOLIA]: new Token(
+    ChainId.BASE_SEPOLIA,
     '0x4200000000000000000000000000000000000006',
     18,
     'WETH',

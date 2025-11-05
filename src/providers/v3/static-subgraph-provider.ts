@@ -35,6 +35,7 @@ import {
   USDC_ARBITRUM_GOERLI,
   USDC_AVAX,
   USDC_BASE,
+  USDC_BASE_SEPOLIA,
   USDC_BNB,
   USDC_ETHEREUM_GNOSIS,
   USDC_GOERLI,
@@ -69,7 +70,7 @@ import { IV3PoolProvider } from './pool-provider';
 import { IV3SubgraphProvider, V3SubgraphPool } from './subgraph-provider';
 
 type ChainTokenList = {
-  readonly [chainId in ChainId]: Token[];
+  readonly [chainId in ChainId]?: Token[];
 };
 
 const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
@@ -160,7 +161,8 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.ZORA_SEPOLIA]: [WRAPPED_NATIVE_CURRENCY[ChainId.ZORA_SEPOLIA], USDC_ZORA_SEPOLIA],
   [ChainId.OPTIMISM_SEPOLIA]: [],
   [ChainId.ARBITRUM_SEPOLIA]: [],
-  [ChainId.ROOTSTOCK]: []
+  [ChainId.ROOTSTOCK]: [],
+  [ChainId.BASE_SEPOLIA]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE_SEPOLIA], USDC_BASE_SEPOLIA]
 };
 
 /**
@@ -186,18 +188,19 @@ export class StaticV3SubgraphProvider implements IV3SubgraphProvider {
     providerConfig?: ProviderConfig
   ): Promise<V3SubgraphPool[]> {
     log.info('In static subgraph provider for V3');
-    const bases = BASES_TO_CHECK_TRADES_AGAINST[this.chainId];
+    const bases = BASES_TO_CHECK_TRADES_AGAINST[this.chainId] || [];
+    const filteredBases = bases.filter((base): base is Token => !!base);
 
     const basePairs: [Token, Token][] = _.flatMap(
-      bases,
-      (base): [Token, Token][] => bases.map((otherBase) => [base, otherBase])
+      filteredBases,
+      (base): [Token, Token][] => filteredBases.map((otherBase) => [base, otherBase])
     );
 
     if (tokenIn && tokenOut) {
       basePairs.push(
         [tokenIn, tokenOut],
-        ...bases.map((base): [Token, Token] => [tokenIn, base]),
-        ...bases.map((base): [Token, Token] => [tokenOut, base])
+        ...filteredBases.map((base): [Token, Token] => [tokenIn, base]),
+        ...filteredBases.map((base): [Token, Token] => [tokenOut, base])
       );
     }
 

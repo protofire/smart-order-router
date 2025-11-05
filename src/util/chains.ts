@@ -16,6 +16,8 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.BNB,
   ChainId.AVALANCHE,
   ChainId.BASE,
+  ChainId.BASE_GOERLI,
+  ChainId.BASE_SEPOLIA,
   ChainId.ZORA,
   ChainId.ZORA_SEPOLIA,
   // Gnosis and Moonbeam don't yet have contracts deployed yet
@@ -25,6 +27,7 @@ export const V2_SUPPORTED = [
   ChainId.MAINNET,
   ChainId.GOERLI,
   ChainId.SEPOLIA,
+  ChainId.BASE_SEPOLIA,
 ];
 
 export const HAS_L1_FEE = [
@@ -34,6 +37,7 @@ export const HAS_L1_FEE = [
   ChainId.ARBITRUM_GOERLI,
   ChainId.BASE,
   ChainId.BASE_GOERLI,
+  ChainId.BASE_SEPOLIA,
   ChainId.ZORA,
   ChainId.ZORA_SEPOLIA,
 ];
@@ -83,6 +87,8 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.BASE;
     case 84531:
       return ChainId.BASE_GOERLI;
+    case 84532:
+      return ChainId.BASE_SEPOLIA;
     case 7777777:
       return ChainId.ZORA;
     case 999999999:
@@ -110,6 +116,7 @@ export enum ChainName {
   AVALANCHE = 'avalanche-mainnet',
   BASE = 'base-mainnet',
   BASE_GOERLI = 'base-goerli',
+  BASE_SEPOLIA = 'base-sepolia',
   ZORA = 'zora',
   ZORA_SEPOLIA = 'zora-sepolia'
 }
@@ -188,6 +195,11 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     'ETHER',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
+  [ChainId.BASE_SEPOLIA]: [
+    'ETH',
+    'ETHER',
+    '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+  ],
   [ChainId.ZORA]: [
     'ETH',
     'ETHER',
@@ -217,6 +229,7 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.BNB]: NativeCurrencyName.BNB,
   [ChainId.AVALANCHE]: NativeCurrencyName.AVALANCHE,
   [ChainId.BASE]: NativeCurrencyName.ETHER,
+  [ChainId.BASE_SEPOLIA]: NativeCurrencyName.ETHER,
   [ChainId.ZORA]: NativeCurrencyName.ETHER,
   [ChainId.ZORA_SEPOLIA]: NativeCurrencyName.ETHER,
 };
@@ -257,6 +270,8 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.BASE;
     case 84531:
       return ChainName.BASE_GOERLI;
+    case 84532:
+      return ChainName.BASE_SEPOLIA;
     case 7777777:
       return ChainName.ZORA;
     case 999999999:
@@ -300,6 +315,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_AVALANCHE!;
     case ChainId.BASE:
       return process.env.JSON_RPC_PROVIDER_BASE!;
+    case ChainId.BASE_SEPOLIA:
+      return process.env.JSON_RPC_PROVIDER_BASE_SEPOLIA!;
     case ChainId.ZORA:
       return process.env.JSON_RPC_PROVIDER_ZORA!;
     case ChainId.ZORA_SEPOLIA:
@@ -445,6 +462,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     'WETH',
     'Wrapped Ether'
   ),
+  [ChainId.BASE_SEPOLIA]: new Token(
+    ChainId.BASE_SEPOLIA,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
   [ChainId.ZORA]: new Token(
     ChainId.ZORA,
     '0x4200000000000000000000000000000000000006',
@@ -460,7 +484,120 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     'Wrapped Ether'
   ),
   [ChainId.ROOTSTOCK]: new Token(
-    ChainId.BASE_GOERLI,
+    ChainId.ROOTSTOCK,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  // Placeholder tokens for new chains in SDK
+  [ChainId.BLAST]: new Token(
+    ChainId.BLAST,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.ZKSYNC]: new Token(
+    ChainId.ZKSYNC,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.ABSTRACT_TESTNET]: new Token(
+    ChainId.ABSTRACT_TESTNET,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.ABSTRACT_MAINNET]: new Token(
+    ChainId.ABSTRACT_MAINNET,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.ZERO]: new Token(
+    ChainId.ZERO,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.BOB]: new Token(
+    ChainId.BOB,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.CYBER]: new Token(
+    ChainId.CYBER,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.SHAPE]: new Token(
+    ChainId.SHAPE,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.INK]: new Token(
+    ChainId.INK,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.REDSTONE_GARNET]: new Token(
+    ChainId.REDSTONE_GARNET,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.REDSTONE]: new Token(
+    ChainId.REDSTONE,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.ANIME]: new Token(
+    ChainId.ANIME,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.ANIME_TESTNET]: new Token(
+    ChainId.ANIME_TESTNET,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.MODE]: new Token(
+    ChainId.MODE,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.FLOW_TESTNET]: new Token(
+    ChainId.FLOW_TESTNET,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.FLOW_MAINNET]: new Token(
+    ChainId.FLOW_MAINNET,
     '0x4200000000000000000000000000000000000006',
     18,
     'WETH',

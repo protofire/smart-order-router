@@ -4,6 +4,7 @@ import { ChainId } from '@uniswap/sdk-core';
 import {
   PERMIT2_ADDRESS,
   UNIVERSAL_ROUTER_ADDRESS,
+  UniversalRouterVersion,
 } from '@uniswap/universal-router-sdk';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BigNumber } from 'ethers/lib/ethers';
@@ -245,7 +246,7 @@ export class TenderlySimulator extends Simulator {
       const approveUniversalRouterCallData =
         permit2Interface.encodeFunctionData('approve', [
           tokenIn.address,
-          UNIVERSAL_ROUTER_ADDRESS(this.chainId),
+          UNIVERSAL_ROUTER_ADDRESS(UniversalRouterVersion.V2_0, this.chainId),
           MAX_UINT160,
           Math.floor(new Date().getTime() / 1000) + 10000000,
         ]);
@@ -276,7 +277,7 @@ export class TenderlySimulator extends Simulator {
         network_id: chainId,
         input: calldata,
         estimate_gas: true,
-        to: UNIVERSAL_ROUTER_ADDRESS(this.chainId),
+        to: UNIVERSAL_ROUTER_ADDRESS(UniversalRouterVersion.V2_0, this.chainId),
         value: currencyIn.isNative ? swapRoute.methodParameters.value : '0',
         from: fromAddress,
         // TODO: This is a Temporary fix given by Tenderly team, remove once resolved on their end.

@@ -10,6 +10,7 @@ import {
   ITokenProvider,
   USDC_AVAX,
   USDC_BASE,
+  USDC_BASE_SEPOLIA,
   USDC_BNB,
   USDC_MAINNET,
   USDT_BNB,
@@ -22,7 +23,7 @@ import {
 import { WRAPPED_NATIVE_CURRENCY } from '../../util/chains';
 
 type ChainTokenList = {
-  readonly [chainId in ChainId]: Token[];
+  readonly [chainId in ChainId]?: Token[];
 };
 
 export const BASES_TO_CHECK_TRADES_AGAINST = (
@@ -69,6 +70,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST = (
     [ChainId.AVALANCHE]: [WRAPPED_NATIVE_CURRENCY[ChainId.AVALANCHE]!, USDC_AVAX, DAI_AVAX],
     [ChainId.BASE]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE]!, USDC_BASE],
     [ChainId.BASE_GOERLI]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE_GOERLI]!],
+    [ChainId.BASE_SEPOLIA]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE_SEPOLIA]!, USDC_BASE_SEPOLIA],
     [ChainId.ZORA]: [WRAPPED_NATIVE_CURRENCY[ChainId.ZORA]!],
     [ChainId.ZORA_SEPOLIA]: [WRAPPED_NATIVE_CURRENCY[ChainId.ZORA_SEPOLIA]!],
     [ChainId.ROOTSTOCK]: [],

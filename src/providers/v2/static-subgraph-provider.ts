@@ -14,7 +14,7 @@ import {
 import { IV2SubgraphProvider, V2SubgraphPool } from './subgraph-provider';
 
 type ChainTokenList = {
-  readonly [chainId in ChainId]: Token[];
+  readonly [chainId in ChainId]?: Token[];
 };
 
 const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
@@ -46,7 +46,8 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.ARBITRUM_SEPOLIA]: [],
   [ChainId.ZORA]: [],
   [ChainId.ZORA_SEPOLIA]: [],
-  [ChainId.ROOTSTOCK]: []
+  [ChainId.ROOTSTOCK]: [],
+  [ChainId.BASE_SEPOLIA]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE_SEPOLIA]!]
 };
 
 /**
@@ -69,18 +70,19 @@ export class StaticV2SubgraphProvider implements IV2SubgraphProvider {
     tokenOut?: Token
   ): Promise<V2SubgraphPool[]> {
     log.info('In static subgraph provider for V2');
-    const bases = BASES_TO_CHECK_TRADES_AGAINST[this.chainId];
+    const bases = BASES_TO_CHECK_TRADES_AGAINST[this.chainId] || [];
+    const filteredBases = bases.filter((base): base is Token => !!base);
 
     const basePairs: [Token, Token][] = _.flatMap(
-      bases,
-      (base): [Token, Token][] => bases.map((otherBase) => [base, otherBase])
+      filteredBases,
+      (base): [Token, Token][] => filteredBases.map((otherBase) => [base, otherBase])
     );
 
     if (tokenIn && tokenOut) {
       basePairs.push(
         [tokenIn, tokenOut],
-        ...bases.map((base): [Token, Token] => [tokenIn, base]),
-        ...bases.map((base): [Token, Token] => [tokenOut, base])
+        ...filteredBases.map((base): [Token, Token] => [tokenIn, base]),
+        ...filteredBases.map((base): [Token, Token] => [tokenOut, base])
       );
     }
 
