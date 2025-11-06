@@ -597,6 +597,15 @@ export const USDC_BASE_GOERLI = new Token(
   'USD Base Coin'
 );
 
+// Base Sepolia Tokens
+export const USDC_BASE_SEPOLIA = new Token(
+  ChainId.BASE_SEPOLIA,
+  '0x036CbD53842c5426634e7929541eC2318f3dCF7e',
+  6,
+  'USDC',
+  'USDC'
+);
+
 // Gnosis Tokens
 export const USDC_ETHEREUM_GNOSIS = new Token(
   ChainId.GNOSIS,
@@ -1077,6 +1086,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_BASE;
     case ChainId.BASE_GOERLI:
       return USDC_BASE_GOERLI;
+    case ChainId.BASE_SEPOLIA:
+      return USDC_BASE_SEPOLIA;
     case ChainId.ZORA:
       return USDC_ZORA;
     case ChainId.ZKSYNC:

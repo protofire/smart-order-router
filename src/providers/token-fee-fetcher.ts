@@ -46,6 +46,8 @@ const FEE_DETECTOR_ADDRESS = (chainId: ChainId) => {
       return '0xC988e19819a63C0e487c6Ad8d6668Ac773923BF2';
     case ChainId.BASE:
       return '0xCF6220e4496B091a6b391D48e770f1FbaC63E740';
+    case ChainId.BASE_SEPOLIA:
+      return '0xCF6220e4496B091a6b391D48e770f1FbaC63E740';
     case ChainId.ARBITRUM_ONE:
       return '0x37324D81e318260DC4f0fCb68035028eFdE6F50e';
     case ChainId.CELO:

@@ -23,6 +23,7 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.BNB,
   ChainId.AVALANCHE,
   ChainId.BASE,
+  ChainId.BASE_SEPOLIA,
   ChainId.BLAST,
   ChainId.ZORA,
   ChainId.ZKSYNC,
@@ -48,6 +49,7 @@ export const V2_SUPPORTED = [
   ChainId.OPTIMISM,
   ChainId.POLYGON,
   ChainId.BASE,
+  ChainId.BASE_SEPOLIA,
   ChainId.BNB,
   ChainId.AVALANCHE,
   ChainId.ABSTRACT_TESTNET,
@@ -131,6 +133,8 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.BASE;
     case 84531:
       return ChainId.BASE_GOERLI;
+    case 84532:
+      return ChainId.BASE_SEPOLIA;
     case 81457:
       return ChainId.BLAST;
     case 7777777:
@@ -190,6 +194,7 @@ export enum ChainName {
   AVALANCHE = 'avalanche-mainnet',
   BASE = 'base-mainnet',
   BASE_GOERLI = 'base-goerli',
+  BASE_SEPOLIA = 'base-sepolia',
   BLAST = 'blast-mainnet',
   ZORA = 'zora-mainnet',
   ZKSYNC = 'zksync-mainnet',
@@ -286,6 +291,11 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
   [ChainId.BASE]: [
+    'ETH',
+    'ETHER',
+    '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+  ],
+  [ChainId.BASE_SEPOLIA]: [
     'ETH',
     'ETHER',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
@@ -388,6 +398,7 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.BNB]: NativeCurrencyName.BNB,
   [ChainId.AVALANCHE]: NativeCurrencyName.AVALANCHE,
   [ChainId.BASE]: NativeCurrencyName.ETHER,
+  [ChainId.BASE_SEPOLIA]: NativeCurrencyName.ETHER,
   [ChainId.BLAST]: NativeCurrencyName.ETHER,
   [ChainId.ZORA]: NativeCurrencyName.ETHER,
   [ChainId.ZKSYNC]: NativeCurrencyName.ETHER,
@@ -447,6 +458,8 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.BASE;
     case 84531:
       return ChainName.BASE_GOERLI;
+    case 84532:
+      return ChainName.BASE_SEPOLIA;
     case 81457:
       return ChainName.BLAST;
     case 7777777:
@@ -524,6 +537,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_AVALANCHE!;
     case ChainId.BASE:
       return process.env.JSON_RPC_PROVIDER_BASE!;
+    case ChainId.BASE_SEPOLIA:
+      return process.env.JSON_RPC_PROVIDER_BASE_SEPOLIA!;
     case ChainId.BLAST:
       return process.env.JSON_RPC_PROVIDER_BLAST!;
     case ChainId.ZORA:
@@ -687,6 +702,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
   ),
   [ChainId.BASE]: new Token(
     ChainId.BASE,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.BASE_SEPOLIA]: new Token(
+    ChainId.BASE_SEPOLIA,
     '0x4200000000000000000000000000000000000006',
     18,
     'WETH',
