@@ -171,6 +171,23 @@ export class V2HeuristicGasModelFactory extends IV2GasModelFactory {
         // If the quote token is not WETH, we convert the gas cost to be in terms of the quote token.
         // We do this by getting the highest liquidity <token>/ETH pool.
         if (!ethPool) {
+          // For STABLE_TESTNET, native currency is already stable (USDT)
+          // If we can't find a pool, use direct conversion since native token is stable
+          if (chainId === ChainId.STABLE_TESTNET) {
+            log.info(
+              'Unable to find native pool for quote token on STABLE_TESTNET, using direct conversion since native token is stable'
+            );
+            const gasCostInTermsOfQuoteToken = CurrencyAmount.fromRawAmount(
+              token,
+              gasCostInEth.quotient.toString()
+            );
+            return {
+              gasEstimate: gasUse,
+              gasCostInToken: gasCostInTermsOfQuoteToken,
+              gasCostInUSD: gasCostInTermsOfUSD!,
+              gasCostInGasToken: gasCostInTermsOfGasToken,
+            };
+          }
           log.info(
             'Unable to find ETH pool with the quote token to produce gas adjusted costs. Route will not account for gas.'
           );
@@ -264,6 +281,22 @@ export class V2HeuristicGasModelFactory extends IV2GasModelFactory {
     if (!usdTokens) {
       throw new Error(
         `Could not find a USD token for computing gas costs on ${chainId}`
+      );
+    }
+
+    // For STABLE_TESTNET, native currency (USDT) is already USD (1:1)
+    if (chainId === ChainId.STABLE_TESTNET) {
+      const usdToken = usdTokens[0]!;
+      const fakeToken = new Token(
+        chainId,
+        '0x0000000000000000000000000000000000000001',
+        usdToken.decimals,
+        'Fake',
+        'Fake gas token'
+      );
+      return new Pair(
+        CurrencyAmount.fromRawAmount(usdToken, 1),
+        CurrencyAmount.fromRawAmount(fakeToken, 1)
       );
     }
 

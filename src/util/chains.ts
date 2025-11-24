@@ -36,6 +36,7 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.ANIME_TESTNET,
   ChainId.ANIME,
   ChainId.MODE,
+  ChainId.STABLE_TESTNET,
   // Gnosis and Moonbeam don't yet have contracts deployed yet
 ];
 
@@ -157,6 +158,8 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.ANIME;
     case 34443:
       return ChainId.MODE;
+    case 2201:
+      return ChainId.STABLE_TESTNET;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -197,6 +200,7 @@ export enum ChainName {
   ANIME_TESTNET = 'anime-testnet',
   ANIME = 'anime',
   MODE = 'mode',
+  STABLE_TESTNET = 'stable-testnet',
 }
 
 export enum NativeCurrencyName {
@@ -210,6 +214,7 @@ export enum NativeCurrencyName {
   AVALANCHE = 'AVAX',
   ANIME_TESTNET = 'ANIME',
   ANIME = 'ANIME',
+  USDT = 'USDT',
 }
 
 export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
@@ -345,6 +350,11 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     'ETHER',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
+  [ChainId.STABLE_TESTNET]: [
+    'USDT',
+    'gUSDT',
+    '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+  ],
 };
 
 export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
@@ -381,6 +391,7 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.ANIME_TESTNET]: NativeCurrencyName.ETHER,
   [ChainId.ANIME]: NativeCurrencyName.ANIME,
   [ChainId.MODE]: NativeCurrencyName.ETHER,
+  [ChainId.STABLE_TESTNET]: NativeCurrencyName.USDT,
 };
 
 export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
@@ -453,6 +464,8 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.ANIME;
     case 34443:
       return ChainName.MODE;
+    case 2201:
+      return ChainName.STABLE_TESTNET;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -526,6 +539,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_ANIME!;
     case ChainId.MODE:
       return process.env.JSON_RPC_PROVIDER_MODE!;
+    case ChainId.STABLE_TESTNET:
+      return process.env.JSON_RPC_PROVIDER_STABLE_TESTNET!;
     default:
       throw new Error(`Chain id: ${id} not supported`);
   }
@@ -785,6 +800,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     18,
     'WETH',
     'Wrapped Ether'
+  ),
+  [ChainId.STABLE_TESTNET]: new Token(
+    ChainId.STABLE_TESTNET,
+    '0x5574c55b7002A900CE7c0f197F5dcc8126bA8501',
+    6,
+    'UP',
+    'Unsupported Protocol'
   ),
 };
 

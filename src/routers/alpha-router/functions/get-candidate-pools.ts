@@ -54,6 +54,7 @@ import {
   USDT_MAINNET,
   USDT_OPTIMISM,
   USDT_OPTIMISM_GOERLI,
+  USDT_STABLE_TESTNET,
   WBTC_ARBITRUM,
   WBTC_GNOSIS,
   WBTC_MAINNET,
@@ -244,6 +245,7 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.ANIME_TESTNET]: [WRAPPED_NATIVE_CURRENCY[ChainId.ANIME_TESTNET]!],
   [ChainId.ANIME]: [WRAPPED_NATIVE_CURRENCY[ChainId.ANIME]!, USDC_ANIME],
   [ChainId.MODE]: [WRAPPED_NATIVE_CURRENCY[ChainId.MODE]!],
+  [ChainId.STABLE_TESTNET]: [USDT_STABLE_TESTNET],
 };
 
 class SubcategorySelectionPools<SubgraphPool> {

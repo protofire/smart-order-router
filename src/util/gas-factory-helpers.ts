@@ -1,7 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { Protocol } from '@uniswap/router-sdk';
 import { ChainId, Percent, Token, TradeType } from '@uniswap/sdk-core';
-import { FeeAmount, Pool } from '@uniswap/v3-sdk';
+import { encodeSqrtRatioX96, FeeAmount, Pool } from '@uniswap/v3-sdk';
 import brotli from 'brotli';
 import JSBI from 'jsbi';
 import _ from 'lodash';
@@ -125,6 +125,26 @@ export async function getHighestLiquidityV3USDPool(
   if (!usdTokens) {
     throw new Error(
       `Could not find a USD token for computing gas costs on ${chainId}`
+    );
+  }
+
+  // For STABLE_TESTNET, native currency (USDT) is already USD (1:1)
+  if (chainId === ChainId.STABLE_TESTNET) {
+    const usdToken = usdTokens[0]!;
+    const fakeToken = new Token(
+      chainId,
+      '0x0000000000000000000000000000000000000000',
+      usdToken.decimals,
+      'Fake',
+      'Fake gas token'
+    );
+    return new Pool(
+      usdToken,
+      fakeToken,
+      FeeAmount.LOWEST,
+      encodeSqrtRatioX96(1, 1),
+      1,
+      0
     );
   }
 
@@ -335,6 +355,38 @@ export async function calculateGasUsed(
   // shortcut if quote token is native currency
   if (quoteToken.equals(nativeCurrency)) {
     gasCostQuoteToken = costNativeCurrency;
+  }
+  // For STABLE_TESTNET, native currency is already stable (USDT)
+  // If we can't find a pool, assume 1:1 conversion since native token is stable
+  else if (chainId === ChainId.STABLE_TESTNET) {
+    const nativePools = await Promise.all([
+      getHighestLiquidityV3NativePool(
+        quoteToken,
+        v3PoolProvider,
+        providerConfig
+      ),
+      getV2NativePool(quoteToken, v2PoolProvider, providerConfig),
+    ]);
+    const nativePool = nativePools.find((pool) => pool !== null);
+
+    if (!nativePool) {
+      // For STABLE_TESTNET, native token is already stable, so use direct conversion
+      // Convert the native currency amount to quote token amount (assuming same decimals or 1:1)
+      log.info(
+        `Could not find native pool for quote token on STABLE_TESTNET, using direct conversion since native token is stable`
+      );
+      // Use the native currency cost directly converted to quote token
+      gasCostQuoteToken = CurrencyAmount.fromRawAmount(
+        quoteToken,
+        costNativeCurrency.quotient.toString()
+      );
+    } else {
+      gasCostQuoteToken = getQuoteThroughNativePool(
+        chainId,
+        costNativeCurrency,
+        nativePool
+      );
+    }
   }
   // get fee in terms of quote token
   else {

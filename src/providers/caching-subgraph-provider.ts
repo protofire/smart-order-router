@@ -160,6 +160,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ],
   [ChainId.ANIME]: [WRAPPED_NATIVE_CURRENCY[ChainId.ANIME]!, USDC_ANIME],
   [ChainId.MODE]: [WRAPPED_NATIVE_CURRENCY[ChainId.MODE]!, USDC_MODE],
+  [ChainId.STABLE_TESTNET]: [WRAPPED_NATIVE_CURRENCY[ChainId.STABLE_TESTNET]!],
 };
 
 export interface IV3SubgraphProvider {

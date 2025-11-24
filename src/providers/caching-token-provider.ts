@@ -209,6 +209,9 @@ export const CACHE_SEED_TOKENS: {
   [ChainId.MODE]: {
     WETH: WRAPPED_NATIVE_CURRENCY[ChainId.MODE],
   },
+  [ChainId.STABLE_TESTNET]: {
+    WUSDT: WRAPPED_NATIVE_CURRENCY[ChainId.STABLE_TESTNET],
+  },
   // Currently we do not have providers for Moonbeam mainnet or Gnosis testnet
 };
 
