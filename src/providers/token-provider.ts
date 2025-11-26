@@ -800,6 +800,14 @@ export const USDT_STABLE_TESTNET = new Token(
   'USDT0'
 );
 
+export const USDT_STABLE = new Token(
+  ChainId.STABLE,
+  '0x779Ded0c9e1022225f8E0630b35a9b54bE713736',
+  6,
+  'USDT0',
+  'USDT0'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,

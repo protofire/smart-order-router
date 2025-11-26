@@ -128,8 +128,8 @@ export async function getHighestLiquidityV3USDPool(
     );
   }
 
-  // For STABLE_TESTNET, native currency (USDT) is already USD (1:1)
-  if (chainId === ChainId.STABLE_TESTNET) {
+  // For Stable, native currency (USDT) is already USD (1:1)
+  if (chainId === ChainId.STABLE_TESTNET || chainId === ChainId.STABLE) {
     const usdToken = usdTokens[0]!;
     const fakeToken = new Token(
       chainId,

@@ -69,6 +69,7 @@ import {
   USDT_OPTIMISM,
   USDT_OPTIMISM_GOERLI,
   USDT_OPTIMISM_SEPOLIA,
+  USDT_STABLE,
   USDT_STABLE_TESTNET,
   WBTC_GOERLI,
 } from '../../../providers/token-provider';
@@ -148,6 +149,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.ANIME]: [USDC_ANIME],
   [ChainId.MODE]: [USDC_MODE],
   [ChainId.STABLE_TESTNET]: [USDT_STABLE_TESTNET],
+  [ChainId.STABLE]: [USDT_STABLE],
 };
 
 export type L1ToL2GasCosts = {
@@ -297,10 +299,10 @@ export const getQuoteThroughNativePool = (
   nativeTokenAmount: CurrencyAmountRaw<Token>,
   nativeTokenPool: Pool | Pair
 ): CurrencyAmount => {
-  // For STABLE_TESTNET, native currency (USDT) is already USD (1:1)
+  // For Stable, native currency (USDT) is already USD (1:1)
   // No need to convert through WETH/USDC pool since native token is already stable
   // Return the amount directly without conversion
-  if (chainId === ChainId.STABLE_TESTNET) {
+  if (chainId === ChainId.STABLE_TESTNET || chainId === ChainId.STABLE) {
     return nativeTokenAmount as CurrencyAmount;
   }
 

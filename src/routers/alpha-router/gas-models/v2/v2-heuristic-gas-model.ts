@@ -171,9 +171,12 @@ export class V2HeuristicGasModelFactory extends IV2GasModelFactory {
         // If the quote token is not WETH, we convert the gas cost to be in terms of the quote token.
         // We do this by getting the highest liquidity <token>/ETH pool.
         if (!ethPool) {
-          // For STABLE_TESTNET, native currency is already stable (USDT)
+          // For Stable, native currency is already stable (USDT)
           // If we can't find a pool, use direct conversion since native token is stable
-          if (chainId === ChainId.STABLE_TESTNET) {
+          if (
+            chainId === ChainId.STABLE_TESTNET ||
+            chainId === ChainId.STABLE
+          ) {
             log.info(
               'Unable to find native pool for quote token on STABLE_TESTNET, using direct conversion since native token is stable'
             );
@@ -284,8 +287,8 @@ export class V2HeuristicGasModelFactory extends IV2GasModelFactory {
       );
     }
 
-    // For STABLE_TESTNET, native currency (USDT) is already USD (1:1)
-    if (chainId === ChainId.STABLE_TESTNET) {
+    // For Stable, native currency (USDT) is already USD (1:1)
+    if (chainId === ChainId.STABLE_TESTNET || chainId === ChainId.STABLE) {
       const usdToken = usdTokens[0]!;
       const fakeToken = new Token(
         chainId,
