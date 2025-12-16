@@ -280,7 +280,7 @@ Total ticks crossed: 7
 ## Cyber Testnet
 
 ```
-./bin/cli quote --tokenIn 0x4200000000000000000000000000000000000006 --tokenOut 0xfbd9e7432d2bd28ac8aab499bda05c9ea45872b6 --amount 0.1 --exactIn --minSplits 1 --router alpha --chainId 111557560
+./bin/cli quote --tokenIn 0x4200000000000000000000000000000000000006 --tokenOut 0xfbd9e7432d2bd28ac8aab499bda05c9ea45872b6 --amount 0.1 --exactIn --minSplits 1 --router alpha --chainId 111557560 --protocols v4
 ```
 
 ## Adding a new Chain

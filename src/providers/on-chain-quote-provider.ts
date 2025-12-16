@@ -1468,11 +1468,18 @@ export class OnChainQuoteProvider implements IOnChainQuoteProvider {
             };
           }
 
+          const sqrtPriceX96AfterList = quoteResult.result[1] || [];
+          const initializedTicksCrossedList = quoteResult.result[2] || [];
+          
           return {
             amount,
             quote: quoteResult.result[0],
-            sqrtPriceX96AfterList: quoteResult.result[1],
-            initializedTicksCrossedList: quoteResult.result[2],
+            sqrtPriceX96AfterList: Array.isArray(sqrtPriceX96AfterList) 
+              ? sqrtPriceX96AfterList.filter((v) => v !== null && v !== undefined)
+              : [],
+            initializedTicksCrossedList: Array.isArray(initializedTicksCrossedList)
+              ? initializedTicksCrossedList.filter((v) => v !== null && v !== undefined && typeof v === 'number')
+              : [],
             gasEstimate: quoteResult.result[3],
             gasLimit: gasLimit,
           };
