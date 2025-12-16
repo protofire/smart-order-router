@@ -58,6 +58,8 @@ export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {
     CHAIN_TO_ADDRESSES_MAP[ChainId.UNICHAIN].v3CoreFactoryAddress,
   [ChainId.SONEIUM]:
     CHAIN_TO_ADDRESSES_MAP[ChainId.SONEIUM].v3CoreFactoryAddress,
+  [ChainId.CYBER_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.CYBER_TESTNET].v3CoreFactoryAddress,
 };
 
 export const QUOTER_V2_ADDRESSES: AddressMap = {
@@ -94,6 +96,8 @@ export const QUOTER_V2_ADDRESSES: AddressMap = {
   // TODO: Gnosis + Moonbeam contracts to be deployed
   [ChainId.UNICHAIN]: CHAIN_TO_ADDRESSES_MAP[ChainId.UNICHAIN].quoterAddress,
   [ChainId.SONEIUM]: CHAIN_TO_ADDRESSES_MAP[ChainId.SONEIUM].quoterAddress,
+  [ChainId.CYBER_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.CYBER_TESTNET].quoterAddress,
 };
 
 export const NEW_QUOTER_V2_ADDRESSES: AddressMap = {
@@ -121,6 +125,8 @@ export const NEW_QUOTER_V2_ADDRESSES: AddressMap = {
     CHAIN_TO_ADDRESSES_MAP[ChainId.BASE_SEPOLIA].quoterAddress,
   [ChainId.UNICHAIN]: CHAIN_TO_ADDRESSES_MAP[ChainId.UNICHAIN].quoterAddress, // TODO: deploy view-only-quoter to unichain
   [ChainId.SONEIUM]: CHAIN_TO_ADDRESSES_MAP[ChainId.SONEIUM].quoterAddress,
+  [ChainId.CYBER_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.CYBER_TESTNET].quoterAddress,
 };
 
 export const PROTOCOL_V4_QUOTER_ADDRESSES: AddressMap = {
@@ -145,6 +151,8 @@ export const PROTOCOL_V4_QUOTER_ADDRESSES: AddressMap = {
   [ChainId.SONEIUM]: CHAIN_TO_ADDRESSES_MAP[ChainId.SONEIUM].v4QuoterAddress,
   [ChainId.MONAD]: CHAIN_TO_ADDRESSES_MAP[ChainId.MONAD].v4QuoterAddress,
   [ChainId.CELO]: CHAIN_TO_ADDRESSES_MAP[ChainId.CELO].v4QuoterAddress,
+  [ChainId.CYBER_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.CYBER_TESTNET].v4QuoterAddress,
 };
 
 export const MIXED_ROUTE_QUOTER_V1_ADDRESSES: AddressMap = {
@@ -215,6 +223,8 @@ export const UNISWAP_MULTICALL_ADDRESSES: AddressMap = {
   // TODO: Gnosis + Moonbeam contracts to be deployed
   [ChainId.UNICHAIN]: CHAIN_TO_ADDRESSES_MAP[ChainId.UNICHAIN].multicallAddress,
   [ChainId.SONEIUM]: CHAIN_TO_ADDRESSES_MAP[ChainId.SONEIUM].multicallAddress,
+  [ChainId.CYBER_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.CYBER_TESTNET].multicallAddress,
 };
 
 export const SWAP_ROUTER_02_ADDRESSES = (chainId: number): string => {
@@ -244,6 +254,8 @@ export const STATE_VIEW_ADDRESSES: AddressMap = {
   [ChainId.SONEIUM]: CHAIN_TO_ADDRESSES_MAP[ChainId.SONEIUM].v4StateView,
   [ChainId.MONAD]: CHAIN_TO_ADDRESSES_MAP[ChainId.MONAD].v4StateView,
   [ChainId.CELO]: CHAIN_TO_ADDRESSES_MAP[ChainId.CELO].v4StateView,
+  [ChainId.CYBER_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.CYBER_TESTNET].v4StateView,
 };
 
 export const OVM_GASPRICE_ADDRESS =
@@ -334,6 +346,13 @@ export const WETH9: {
   [ChainId.BASE_SEPOLIA]: WETH9_HELPER[ChainId.BASE_SEPOLIA]!,
   [ChainId.UNICHAIN]: WETH9_HELPER[ChainId.UNICHAIN]!,
   [ChainId.SONEIUM]: WETH9_HELPER[ChainId.SONEIUM]!,
+  [ChainId.CYBER_TESTNET]: new Token(
+    ChainId.CYBER_TESTNET,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
 };
 
 export const BEACON_CHAIN_DEPOSIT_ADDRESS =

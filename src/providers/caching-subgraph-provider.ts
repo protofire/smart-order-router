@@ -29,6 +29,7 @@ import {
   USDC_BASE,
   USDC_BASE_SEPOLIA,
   USDC_BNB,
+  USDC_CYBER_TESTNET,
   USDC_MAINNET,
   USDC_MONAD,
   USDC_MOONBEAM,
@@ -191,6 +192,11 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     nativeOnChain(ChainId.MONAD),
     WRAPPED_NATIVE_CURRENCY[ChainId.MONAD]!,
     USDC_MONAD,
+  ],
+  [ChainId.CYBER_TESTNET]: [
+    nativeOnChain(ChainId.CYBER_TESTNET),
+    WRAPPED_NATIVE_CURRENCY[ChainId.CYBER_TESTNET]!,
+    USDC_CYBER_TESTNET,
   ],
 };
 

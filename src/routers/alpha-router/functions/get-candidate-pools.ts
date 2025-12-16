@@ -47,6 +47,7 @@ import {
   USDC_BASE,
   USDC_BASE_SEPOLIA,
   USDC_BNB,
+  USDC_CYBER_TESTNET,
   USDC_ETHEREUM_GNOSIS,
   USDC_MAINNET,
   USDC_MONAD,
@@ -267,6 +268,7 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
     USDC_UNICHAIN,
   ],
   [ChainId.SONEIUM]: [USDC_SONEIUM, WRAPPED_NATIVE_CURRENCY[ChainId.SONEIUM]!],
+  [ChainId.CYBER_TESTNET]: [USDC_CYBER_TESTNET, WRAPPED_NATIVE_CURRENCY[ChainId.CYBER_TESTNET]!],
 };
 
 const excludedV3PoolIds = new Set([

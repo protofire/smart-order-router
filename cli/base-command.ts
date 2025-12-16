@@ -4,6 +4,7 @@ import { JsonRpcProvider } from '@ethersproject/providers';
 import { Command, flags } from '@oclif/command';
 import { ParserOutput } from '@oclif/parser/lib/parse';
 import DEFAULT_TOKEN_LIST from '@uniswap/default-token-list';
+// import { TokenList } from '@uniswap/token-lists';
 import { ChainId, Currency, CurrencyAmount, Token } from '@uniswap/sdk-core';
 import { MethodParameters } from '@uniswap/v3-sdk';
 import bunyan, { default as Logger } from 'bunyan';
@@ -244,7 +245,22 @@ export abstract class BaseCommand extends Command {
     );
 
     let tokenListProvider: CachingTokenListProvider;
-    if (tokenListURI) {
+    if (chainId === ChainId.CYBER_TESTNET) {
+      const emptyTokenList = {
+        name: 'Empty',
+        timestamp: new Date().toISOString(),
+        version: { major: 1, minor: 0, patch: 0 },
+        tags: {},
+        logoURI: '',
+        keywords: [],
+        tokens: [],
+      };
+      tokenListProvider = await CachingTokenListProvider.fromTokenList(
+        chainId,
+        emptyTokenList,
+        tokenCache
+      );
+    } else if (tokenListURI) {
       tokenListProvider = await CachingTokenListProvider.fromTokenListURI(
         chainId,
         tokenListURI,
@@ -403,7 +419,7 @@ export abstract class BaseCommand extends Command {
         Math.min(estimatedGasUsedUSD.currency.decimals, 6)
       )}`
     );
-    if(estimatedGasUsedGasToken) {
+    if (estimatedGasUsedGasToken) {
       this.logger.info(
         `Gas Used gas token: ${estimatedGasUsedGasToken.toFixed(
           Math.min(estimatedGasUsedGasToken.currency.decimals, 6)

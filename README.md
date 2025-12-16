@@ -60,6 +60,7 @@ JSON_RPC_PROVIDER_CELO_ALFAJORES = '<JSON_RPC_PROVIDER>'
 JSON_RPC_PROVIDER_BNB = '<JSON_RPC_PROVIDER>'
 JSON_RPC_PROVIDER_AVALANCHE = '<JSON_RPC_PROVIDER>'
 JSON_RPC_PROVIDER_BASE = '<JSON_RPC_PROVIDER>'
+JSON_RPC_PROVIDER_CYBER_TESTNET = '<JSON_RPC_PROVIDER>'
 ```
 
 Then from the root directory you can execute the CLI.
@@ -162,7 +163,6 @@ Total ticks crossed: 7
 ./bin/cli quote --tokenIn 0x7F5c764cBc14f9669B88837ca1490cCa17c31607 --tokenOut 0x4200000000000000000000000000000000000042 --amount 1 --exactIn --minSplits 1 --protocols v2 --router alpha --chainId 10
 ```
 
-
 ## Optimism-Goerli
 
 ```
@@ -260,6 +260,7 @@ Total ticks crossed: 7
 ```
 
 ## Monad Mainnet
+
 ```
 ./bin/cli quote --tokenIn 0x3bd359C1119dA7Da1D913D1C4D2B7c461115433A --tokenOut 0x754704Bc059F8C67012fEd69BC8A327a5aafb603 --amount 0.1 --exactIn --minSplits 1 --protocols v2 --router alpha --chainId 143
 ```
@@ -274,6 +275,12 @@ Total ticks crossed: 7
 
 ```
 ./bin/cli quote --tokenIn 0x4200000000000000000000000000000000000006 --tokenOut 0xbA9986D2381edf1DA03B0B9c1f8b00dc4AacC369 --amount 0.1 --exactIn --minSplits 1 --protocols v3 --router alpha --chainId 1868
+```
+
+## Cyber Testnet
+
+```
+./bin/cli quote --tokenIn 0x4200000000000000000000000000000000000006 --tokenOut 0xfbd9e7432d2bd28ac8aab499bda05c9ea45872b6 --amount 0.1 --exactIn --minSplits 1 --router alpha --chainId 111557560
 ```
 
 ## Adding a new Chain

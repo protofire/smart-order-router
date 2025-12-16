@@ -813,6 +813,14 @@ export const USDC_SONEIUM = new Token(
   'Soneium Bridged USDC Soneium'
 );
 
+export const USDC_CYBER_TESTNET = new Token(
+  ChainId.CYBER_TESTNET,
+  '0xfbd9e7432d2bd28ac8aab499bda05c9ea45872b6',
+  6,
+  'mUSDC',
+  'Mock USDC'
+);
+
 export class TokenProvider implements ITokenProvider {
   constructor(
     private chainId: ChainId,
@@ -1124,6 +1132,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_SONEIUM;
     case ChainId.MONAD:
       return USDC_MONAD;
+    case ChainId.CYBER_TESTNET:
+      return USDC_CYBER_TESTNET;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }
