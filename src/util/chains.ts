@@ -38,6 +38,7 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.MODE,
   ChainId.FLOW_TESTNET,
   ChainId.FLOW_MAINNET,
+  ChainId.ZIRCUIT,
   // Gnosis and Moonbeam don't yet have contracts deployed yet
 ];
 
@@ -55,6 +56,7 @@ export const V2_SUPPORTED = [
   ChainId.CYBER,
   ChainId.SHAPE,
   ChainId.INK,
+  ChainId.ZIRCUIT,
   // Enable once supported
   // ChainId.REDSTONE,
   // ChainId.REDSTONE_GARNET,
@@ -165,6 +167,8 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.FLOW_TESTNET;
     case 747:
       return ChainId.FLOW_MAINNET;
+    case 48900:
+      return ChainId.ZIRCUIT;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -207,6 +211,7 @@ export enum ChainName {
   MODE = 'mode',
   FLOW_TESTNET = 'flow-testnet',
   FLOW_MAINNET = 'flow',
+  ZIRCUIT = 'zircuit-mainnet',
 }
 
 export enum NativeCurrencyName {
@@ -367,6 +372,11 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     'FLOW',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
+  [ChainId.ZIRCUIT]: [
+    'ETH',
+    'ETHER',
+    '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+  ],
 };
 
 export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
@@ -405,6 +415,7 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.MODE]: NativeCurrencyName.ETHER,
   [ChainId.FLOW_TESTNET]: NativeCurrencyName.FLOW_TESTNET,
   [ChainId.FLOW_MAINNET]: NativeCurrencyName.FLOW_MAINNET,
+  [ChainId.ZIRCUIT]: NativeCurrencyName.ETHER,
 };
 
 export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
@@ -481,6 +492,8 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.FLOW_TESTNET;
     case 747:
       return ChainName.FLOW_MAINNET;
+    case 48900:
+      return ChainName.ZIRCUIT;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -558,6 +571,8 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_FLOW_TESTNET!;
     case ChainId.FLOW_MAINNET:
       return process.env.JSON_RPC_PROVIDER_FLOW_MAINNET!;
+    case ChainId.ZIRCUIT:
+      return process.env.JSON_RPC_PROVIDER_ZIRCUIT!;
     default:
       throw new Error(`Chain id: ${id} not supported`);
   }
@@ -831,6 +846,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     18,
     'WFLOW',
     'Wrapped Flow'
+  ),
+  [ChainId.ZIRCUIT]: new Token(
+    ChainId.ZIRCUIT,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
   ),
 };
 

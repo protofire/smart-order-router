@@ -37,6 +37,7 @@ import {
   USDC_BNB,
   USDC_ETHEREUM_GNOSIS,
   USDC_FLOW_TESTNET,
+  USDC_ZIRCUIT,
   USDF_FLOW_MAINNET,
   USDC_MAINNET,
   USDC_MOONBEAM,
@@ -218,6 +219,10 @@ export const CACHE_SEED_TOKENS: {
   [ChainId.FLOW_MAINNET]: {
     WFLOW: WRAPPED_NATIVE_CURRENCY[ChainId.FLOW_MAINNET],
     USDF: USDF_FLOW_MAINNET,
+  },
+  [ChainId.ZIRCUIT]: {
+    WETH: WRAPPED_NATIVE_CURRENCY[ChainId.ZIRCUIT],
+    USDC: USDC_ZIRCUIT,
   },
   // Currently we do not have providers for Moonbeam mainnet or Gnosis testnet
 };

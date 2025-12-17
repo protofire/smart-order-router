@@ -62,6 +62,7 @@ export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {
   [ChainId.MODE]: CHAIN_TO_ADDRESSES_MAP[ChainId.MODE].v3CoreFactoryAddress,
   [ChainId.FLOW_TESTNET]: CHAIN_TO_ADDRESSES_MAP[ChainId.FLOW_TESTNET].v3CoreFactoryAddress,
   [ChainId.FLOW_MAINNET]: CHAIN_TO_ADDRESSES_MAP[ChainId.FLOW_MAINNET].v3CoreFactoryAddress,
+  [ChainId.ZIRCUIT]: CHAIN_TO_ADDRESSES_MAP[ChainId.ZIRCUIT].v3CoreFactoryAddress,
   // TODO: Gnosis + Moonbeam contracts to be deployed
 };
 
@@ -105,6 +106,7 @@ export const QUOTER_V2_ADDRESSES: AddressMap = {
   [ChainId.ANIME]: CHAIN_TO_ADDRESSES_MAP[ChainId.ANIME].quoterAddress,
   [ChainId.FLOW_TESTNET]: CHAIN_TO_ADDRESSES_MAP[ChainId.FLOW_TESTNET].quoterAddress,
   [ChainId.FLOW_MAINNET]: CHAIN_TO_ADDRESSES_MAP[ChainId.FLOW_MAINNET].quoterAddress,
+  [ChainId.ZIRCUIT]: CHAIN_TO_ADDRESSES_MAP[ChainId.ZIRCUIT].quoterAddress,
   // TODO: Gnosis + Moonbeam contracts to be deployed
 };
 
@@ -182,6 +184,7 @@ export const UNISWAP_MULTICALL_ADDRESSES: AddressMap = {
   [ChainId.MODE]: CHAIN_TO_ADDRESSES_MAP[ChainId.MODE].multicallAddress,
   [ChainId.FLOW_TESTNET]: CHAIN_TO_ADDRESSES_MAP[ChainId.FLOW_TESTNET].multicallAddress,
   [ChainId.FLOW_MAINNET]: CHAIN_TO_ADDRESSES_MAP[ChainId.FLOW_MAINNET].multicallAddress,
+  [ChainId.ZIRCUIT]: CHAIN_TO_ADDRESSES_MAP[ChainId.ZIRCUIT].multicallAddress,
   // TODO: Gnosis + Moonbeam contracts to be deployed
 };
 
@@ -441,6 +444,13 @@ export const WETH9: {
     18,
     'WFLOW',
     'Wrapped Flow'
+  ),
+  [ChainId.ZIRCUIT]: new Token(
+    ChainId.ZIRCUIT,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
   ),
 };
 

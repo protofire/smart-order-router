@@ -63,6 +63,7 @@ import {
   USDC_ZKSYNC,
   USDC_ZORA,
   USDCE_ZKSYNC,
+  USDC_ZIRCUIT,
   USDF_FLOW_MAINNET,
   USDT_ARBITRUM,
   USDT_BNB,
@@ -150,6 +151,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.MODE]: [USDC_MODE],
   [ChainId.FLOW_TESTNET]: [USDC_FLOW_TESTNET],
   [ChainId.FLOW_MAINNET]: [USDF_FLOW_MAINNET],
+  [ChainId.ZIRCUIT]: [USDC_ZIRCUIT],
 };
 
 export type L1ToL2GasCosts = {
