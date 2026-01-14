@@ -203,10 +203,23 @@ export function getGasCostInNativeCurrency(
   nativeCurrency: Token,
   gasCostInWei: BigNumber
 ) {
-  // wrap fee to native currency
+  // Gas cost is in wei (1e-18 of native currency).
+  // CurrencyAmount.fromRawAmount expects the value in token's smallest units.
+  // For 18-decimal tokens (ETH): wei = smallest unit, no adjustment needed.
+  // For non-18-decimal tokens (e.g., 6-decimal USDT): must adjust by 10^(18-decimals).
+  let gasCostInSmallestUnits: BigNumber;
+  if (nativeCurrency.decimals < 18) {
+    const decimalAdjustment = BigNumber.from(10).pow(
+      18 - nativeCurrency.decimals
+    );
+    gasCostInSmallestUnits = gasCostInWei.div(decimalAdjustment);
+  } else {
+    gasCostInSmallestUnits = gasCostInWei;
+  }
+
   const costNativeCurrency = CurrencyAmount.fromRawAmount(
     nativeCurrency,
-    gasCostInWei.toString()
+    gasCostInSmallestUnits.toString()
   );
   return costNativeCurrency;
 }
@@ -652,9 +665,9 @@ export const calculateL1GasFeesHelper = async (
 
   // wrap fee to native currency
   const nativeCurrency = WRAPPED_NATIVE_CURRENCY[chainId];
-  const costNativeCurrency = CurrencyAmount.fromRawAmount(
+  const costNativeCurrency = getGasCostInNativeCurrency(
     nativeCurrency,
-    mainnetFeeInWei.toString()
+    mainnetFeeInWei
   );
 
   // convert fee into usd

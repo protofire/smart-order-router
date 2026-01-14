@@ -151,8 +151,22 @@ export abstract class TickBasedHeuristicGasModelFactory<
           nativeAndQuoteTokenPool
         );
       }
+
+      // For STABLE chains, getQuoteThroughNativePool returns 1:1 conversion
+      // but with nativeCurrency (UP). Rewrap with quoteToken to ensure currency match
+      // in CurrencyAmount.subtract() calls.
+      if (
+        (chainId === ChainId.STABLE_TESTNET || chainId === ChainId.STABLE) &&
+        gasCostInTermsOfQuoteToken
+      ) {
+        gasCostInTermsOfQuoteToken = CurrencyAmount.fromRawAmount(
+          quoteToken,
+          gasCostInTermsOfQuoteToken.quotient.toString()
+        );
+      }
+
       // We may have a nativeAmountPool, but not a nativePool
-      else {
+      if (!nativeAndQuoteTokenPool) {
         log.info(
           `Unable to find ${nativeCurrency.symbol} pool with the quote token, ${quoteToken.symbol} to produce gas adjusted costs. Using amountToken to calculate gas costs.`
         );
@@ -307,9 +321,23 @@ export abstract class TickBasedHeuristicGasModelFactory<
 
     const wrappedCurrency = WRAPPED_NATIVE_CURRENCY[chainId]!;
 
+    // Gas price from RPC is in wei (1e-18 of native currency).
+    // CurrencyAmount.fromRawAmount expects the value in token's smallest units.
+    // For 18-decimal tokens (ETH): wei = smallest unit, no adjustment needed.
+    // For non-18-decimal tokens (e.g., 6-decimal USDT): must adjust by 10^(18-decimals).
+    let gasCostInSmallestUnits: BigNumber;
+    if (wrappedCurrency.decimals < 18) {
+      const decimalAdjustment = BigNumber.from(10).pow(
+        18 - wrappedCurrency.decimals
+      );
+      gasCostInSmallestUnits = baseGasCostWei.div(decimalAdjustment);
+    } else {
+      gasCostInSmallestUnits = baseGasCostWei;
+    }
+
     const totalGasCostNativeCurrency = CurrencyAmount.fromRawAmount(
       wrappedCurrency,
-      baseGasCostWei.toString()
+      gasCostInSmallestUnits.toString()
     );
 
     return {

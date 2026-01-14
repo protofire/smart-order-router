@@ -201,11 +201,24 @@ export class V2HeuristicGasModelFactory extends IV2GasModelFactory {
           };
         }
 
-        const gasCostInTermsOfQuoteToken = getQuoteThroughNativePool(
+        let gasCostInTermsOfQuoteToken = getQuoteThroughNativePool(
           chainId,
           gasCostInEth,
           ethPool
         );
+
+        // For STABLE chains, getQuoteThroughNativePool returns 1:1 conversion
+        // but with nativeCurrency (UP). Rewrap with token to ensure currency match
+        // in CurrencyAmount.subtract() calls.
+        if (
+          (chainId === ChainId.STABLE_TESTNET || chainId === ChainId.STABLE) &&
+          gasCostInTermsOfQuoteToken
+        ) {
+          gasCostInTermsOfQuoteToken = CurrencyAmount.fromRawAmount(
+            token,
+            gasCostInTermsOfQuoteToken.quotient.toString()
+          );
+        }
 
         return {
           gasEstimate: gasUse,
@@ -235,9 +248,21 @@ export class V2HeuristicGasModelFactory extends IV2GasModelFactory {
 
     const weth = WRAPPED_NATIVE_CURRENCY[chainId]!;
 
+    // Gas price from RPC is in wei (1e-18 of native currency).
+    // CurrencyAmount.fromRawAmount expects the value in token's smallest units.
+    // For 18-decimal tokens (ETH): wei = smallest unit, no adjustment needed.
+    // For non-18-decimal tokens (e.g., 6-decimal USDT): must adjust by 10^(18-decimals).
+    let gasCostInSmallestUnits: BigNumber;
+    if (weth.decimals < 18) {
+      const decimalAdjustment = BigNumber.from(10).pow(18 - weth.decimals);
+      gasCostInSmallestUnits = totalGasCostWei.div(decimalAdjustment);
+    } else {
+      gasCostInSmallestUnits = totalGasCostWei;
+    }
+
     const gasCostInEth = CurrencyAmount.fromRawAmount(
       weth,
-      totalGasCostWei.toString()
+      gasCostInSmallestUnits.toString()
     );
 
     return { gasCostInEth, gasUse };
