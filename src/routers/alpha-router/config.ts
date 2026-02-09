@@ -47,6 +47,8 @@ export const DEFAULT_ROUTING_CONFIG_BY_CHAIN = (
     // Arbitrum calls have lower gas limits and tend to timeout more, which causes us to reduce the multicall
     // batch size and send more multicalls per quote. To reduce the amount of requests each quote sends, we
     // have to adjust the routing config so we explore fewer routes.
+    case ChainId.STABLE:
+    case ChainId.STABLE_TESTNET:
     case ChainId.ARBITRUM_ONE:
     case ChainId.ARBITRUM_GOERLI:
     case ChainId.ARBITRUM_SEPOLIA:
