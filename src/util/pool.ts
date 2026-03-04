@@ -327,4 +327,24 @@ export const V4_ETH_WETH_FAKE_POOL: { [chainId in ChainId]: V4Pool } = {
     0,
     0
   ),
+  [ChainId.CYBER_TESTNET]: new V4Pool(
+    nativeOnChain(ChainId.CYBER_TESTNET),
+    nativeOnChain(ChainId.CYBER_TESTNET).wrapped,
+    0,
+    FAKE_TICK_SPACING,
+    ADDRESS_ZERO,
+    79228162514264337593543950336,
+    0,
+    0
+  ),
+  [ChainId.FLOW_TESTNET]: new V4Pool(
+    nativeOnChain(ChainId.FLOW_TESTNET),
+    nativeOnChain(ChainId.FLOW_TESTNET).wrapped,
+    0,
+    FAKE_TICK_SPACING,
+    ADDRESS_ZERO,
+    79228162514264337593543950336,
+    0,
+    0
+  ),
 };

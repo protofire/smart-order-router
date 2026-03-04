@@ -59,6 +59,10 @@ export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {
   [ChainId.SONEIUM]:
     CHAIN_TO_ADDRESSES_MAP[ChainId.SONEIUM].v3CoreFactoryAddress,
   [ChainId.XLAYER]: CHAIN_TO_ADDRESSES_MAP[ChainId.XLAYER].v3CoreFactoryAddress,
+  [ChainId.CYBER_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.CYBER_TESTNET].v3CoreFactoryAddress,
+  [ChainId.FLOW_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.FLOW_TESTNET].v3CoreFactoryAddress,
 };
 
 export const QUOTER_V2_ADDRESSES: AddressMap = {
@@ -96,6 +100,10 @@ export const QUOTER_V2_ADDRESSES: AddressMap = {
   [ChainId.UNICHAIN]: CHAIN_TO_ADDRESSES_MAP[ChainId.UNICHAIN].quoterAddress,
   [ChainId.SONEIUM]: CHAIN_TO_ADDRESSES_MAP[ChainId.SONEIUM].quoterAddress,
   [ChainId.XLAYER]: CHAIN_TO_ADDRESSES_MAP[ChainId.XLAYER].quoterAddress,
+  [ChainId.CYBER_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.CYBER_TESTNET].quoterAddress,
+  [ChainId.FLOW_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.FLOW_TESTNET].quoterAddress,
 };
 
 export const NEW_QUOTER_V2_ADDRESSES: AddressMap = {
@@ -124,6 +132,10 @@ export const NEW_QUOTER_V2_ADDRESSES: AddressMap = {
   [ChainId.UNICHAIN]: CHAIN_TO_ADDRESSES_MAP[ChainId.UNICHAIN].quoterAddress, // TODO: deploy view-only-quoter to unichain
   [ChainId.SONEIUM]: CHAIN_TO_ADDRESSES_MAP[ChainId.SONEIUM].quoterAddress,
   [ChainId.XLAYER]: CHAIN_TO_ADDRESSES_MAP[ChainId.XLAYER].quoterAddress,
+  [ChainId.CYBER_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.CYBER_TESTNET].quoterAddress,
+  [ChainId.FLOW_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.FLOW_TESTNET].quoterAddress,
 };
 
 export const PROTOCOL_V4_QUOTER_ADDRESSES: AddressMap = {
@@ -149,6 +161,10 @@ export const PROTOCOL_V4_QUOTER_ADDRESSES: AddressMap = {
   [ChainId.MONAD]: CHAIN_TO_ADDRESSES_MAP[ChainId.MONAD].v4QuoterAddress,
   [ChainId.CELO]: CHAIN_TO_ADDRESSES_MAP[ChainId.CELO].v4QuoterAddress,
   [ChainId.XLAYER]: CHAIN_TO_ADDRESSES_MAP[ChainId.XLAYER].v4QuoterAddress,
+  [ChainId.CYBER_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.CYBER_TESTNET].v4QuoterAddress,
+  [ChainId.FLOW_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.FLOW_TESTNET].v4QuoterAddress,
 };
 
 export const MIXED_ROUTE_QUOTER_V1_ADDRESSES: AddressMap = {
@@ -224,6 +240,10 @@ export const UNISWAP_MULTICALL_ADDRESSES: AddressMap = {
   [ChainId.UNICHAIN]: CHAIN_TO_ADDRESSES_MAP[ChainId.UNICHAIN].multicallAddress,
   [ChainId.SONEIUM]: CHAIN_TO_ADDRESSES_MAP[ChainId.SONEIUM].multicallAddress,
   [ChainId.XLAYER]: CHAIN_TO_ADDRESSES_MAP[ChainId.XLAYER].multicallAddress,
+  [ChainId.CYBER_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.CYBER_TESTNET].multicallAddress,
+  [ChainId.FLOW_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.FLOW_TESTNET].multicallAddress,
 };
 
 export const SWAP_ROUTER_02_ADDRESSES = (chainId: number): string => {
@@ -254,6 +274,10 @@ export const STATE_VIEW_ADDRESSES: AddressMap = {
   [ChainId.MONAD]: CHAIN_TO_ADDRESSES_MAP[ChainId.MONAD].v4StateView,
   [ChainId.CELO]: CHAIN_TO_ADDRESSES_MAP[ChainId.CELO].v4StateView,
   [ChainId.XLAYER]: CHAIN_TO_ADDRESSES_MAP[ChainId.XLAYER].v4StateView,
+  [ChainId.CYBER_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.CYBER_TESTNET].v4StateView,
+  [ChainId.FLOW_TESTNET]:
+    CHAIN_TO_ADDRESSES_MAP[ChainId.FLOW_TESTNET].v4StateView,
 };
 
 export const OVM_GASPRICE_ADDRESS =
@@ -345,6 +369,20 @@ export const WETH9: {
   [ChainId.UNICHAIN]: WETH9_HELPER[ChainId.UNICHAIN]!,
   [ChainId.SONEIUM]: WETH9_HELPER[ChainId.SONEIUM]!,
   [ChainId.XLAYER]: WETH9_HELPER[ChainId.XLAYER]!,
+  [ChainId.CYBER_TESTNET]: new Token(
+    ChainId.CYBER_TESTNET,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.FLOW_TESTNET]: new Token(
+    ChainId.FLOW_TESTNET,
+    '0xd3bF53DAC106A0290B0483EcBC89d40FcC961f3e',
+    18,
+    'WFLOW',
+    'Wrapped Flow'
+  ),
 };
 
 export const BEACON_CHAIN_DEPOSIT_ADDRESS =

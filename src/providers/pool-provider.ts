@@ -91,10 +91,11 @@ export abstract class PoolProvider<
       ),
     ]);
 
+    const resolvedBlockNumber = await providerConfig?.blockNumber;
     log.info(
       `Got liquidity and slot0s for ${poolIdentifierSet.size} pools ${
-        providerConfig?.blockNumber
-          ? `as of block: ${providerConfig?.blockNumber}.`
+        resolvedBlockNumber
+          ? `as of block: ${resolvedBlockNumber}.`
           : ``
       }`
     );

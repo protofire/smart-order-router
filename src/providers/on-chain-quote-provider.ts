@@ -794,7 +794,7 @@ export class OnChainQuoteProvider implements IOnChainQuoteProvider {
         log.info(
           `Starting attempt: ${attemptNumber}.
           Currently ${success.length} success, ${failed.length} failed, ${pending.length} pending.
-          Gas limit override: ${gasLimitOverride} Block number override: ${providerConfig.blockNumber}.`
+          Gas limit override: ${gasLimitOverride} Block number override: ${await providerConfig.blockNumber}.`
         );
 
         quoteStates = await Promise.all(

@@ -21,6 +21,8 @@ export const DEFAULT_ROUTING_CONFIG_BY_CHAIN = (
     case ChainId.UNICHAIN:
     case ChainId.SONEIUM:
     case ChainId.XLAYER:
+    case ChainId.CYBER_TESTNET:
+    case ChainId.FLOW_TESTNET:
       return {
         v2PoolSelection: {
           topN: 3,

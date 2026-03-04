@@ -49,6 +49,8 @@ import {
   USDC_UNICHAIN,
   USDC_WORLDCHAIN,
   USDC_XLAYER,
+  USDC_CYBER_TESTNET,
+  USDC_FLOW_TESTNET,
   USDT_ARBITRUM,
   USDT_BNB,
   USDT_MAINNET,
@@ -215,6 +217,14 @@ export const CACHE_SEED_TOKENS: {
   [ChainId.XLAYER]: {
     USDC: USDC_XLAYER,
     WETH: WRAPPED_NATIVE_CURRENCY[ChainId.XLAYER],
+  },
+  [ChainId.CYBER_TESTNET]: {
+    USDC: USDC_CYBER_TESTNET,
+    WETH: WRAPPED_NATIVE_CURRENCY[ChainId.CYBER_TESTNET],
+  },
+  [ChainId.FLOW_TESTNET]: {
+    USDC: USDC_FLOW_TESTNET,
+    WFLOW: WRAPPED_NATIVE_CURRENCY[ChainId.FLOW_TESTNET],
   },
   // Currently we do not have providers for Moonbeam mainnet or Gnosis testnet
 };

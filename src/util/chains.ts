@@ -34,6 +34,8 @@ export const SUPPORTED_CHAINS: ChainId[] = [
   ChainId.BASE_SEPOLIA,
   ChainId.SONEIUM,
   ChainId.XLAYER,
+  ChainId.CYBER_TESTNET,
+  ChainId.FLOW_TESTNET,
   // Gnosis and Moonbeam don't yet have contracts deployed yet
 ];
 
@@ -52,6 +54,8 @@ export const V2_SUPPORTED = [
   ChainId.UNICHAIN,
   ChainId.SONEIUM,
   ChainId.XLAYER,
+  ChainId.CYBER_TESTNET,
+  ChainId.FLOW_TESTNET,
 ];
 
 export const V4_SUPPORTED = [
@@ -70,6 +74,8 @@ export const V4_SUPPORTED = [
   ChainId.SONEIUM,
   ChainId.CELO,
   ChainId.XLAYER,
+  ChainId.CYBER_TESTNET,
+  ChainId.FLOW_TESTNET,
 ];
 
 export const MIXED_SUPPORTED = [
@@ -90,6 +96,8 @@ export const MIXED_SUPPORTED = [
   ChainId.SONEIUM,
   ChainId.XLAYER,
   ChainId.MONAD,
+  ChainId.CYBER_TESTNET,
+  ChainId.FLOW_TESTNET,
 ];
 
 export const MIXED_CROSS_LIQUIDITY_V3_AGAINST_V4_SUPPORTED = [ChainId.BASE];
@@ -112,6 +120,7 @@ export const HAS_L1_FEE = [
   ChainId.UNICHAIN,
   ChainId.SONEIUM,
   ChainId.XLAYER,
+  ChainId.CYBER_TESTNET,
 ];
 
 export const NETWORKS_WITH_SAME_UNISWAP_ADDRESSES = [
@@ -185,6 +194,10 @@ export const ID_TO_CHAIN_ID = (id: number): ChainId => {
       return ChainId.SONEIUM;
     case 196:
       return ChainId.XLAYER;
+    case 111557560:
+      return ChainId.CYBER_TESTNET;
+    case 545:
+      return ChainId.FLOW_TESTNET;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -221,6 +234,8 @@ export enum ChainName {
   SONEIUM = 'soneium-mainnet',
   MONAD = 'monad-mainnet',
   XLAYER = 'xlayer-mainnet',
+  CYBER_TESTNET = 'cyber-testnet',
+  FLOW_TESTNET = 'flow-testnet',
 }
 
 export enum NativeCurrencyName {
@@ -234,6 +249,7 @@ export enum NativeCurrencyName {
   AVALANCHE = 'AVAX',
   MONAD = 'MON',
   XLAYER = 'OKB',
+  FLOW = 'FLOW',
 }
 
 export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
@@ -357,6 +373,16 @@ export const NATIVE_NAMES_BY_ID: { [chainId: number]: string[] } = {
     'WOKB',
     '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
   ],
+  [ChainId.CYBER_TESTNET]: [
+    'ETH',
+    'ETHER',
+    '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+  ],
+  [ChainId.FLOW_TESTNET]: [
+    'FLOW',
+    'Flow',
+    '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+  ],
 };
 
 export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
@@ -389,6 +415,8 @@ export const NATIVE_CURRENCY: { [chainId: number]: NativeCurrencyName } = {
   [ChainId.UNICHAIN]: NativeCurrencyName.ETHER,
   [ChainId.SONEIUM]: NativeCurrencyName.ETHER,
   [ChainId.XLAYER]: NativeCurrencyName.XLAYER,
+  [ChainId.CYBER_TESTNET]: NativeCurrencyName.ETHER,
+  [ChainId.FLOW_TESTNET]: NativeCurrencyName.FLOW,
 };
 
 export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
@@ -453,6 +481,10 @@ export const ID_TO_NETWORK_NAME = (id: number): ChainName => {
       return ChainName.SONEIUM;
     case 196:
       return ChainName.XLAYER;
+    case 111557560:
+      return ChainName.CYBER_TESTNET;
+    case 545:
+      return ChainName.FLOW_TESTNET;
     default:
       throw new Error(`Unknown chain id: ${id}`);
   }
@@ -518,6 +550,10 @@ export const ID_TO_PROVIDER = (id: ChainId): string => {
       return process.env.JSON_RPC_PROVIDER_SONEIUM!;
     case ChainId.XLAYER:
       return process.env.JSON_RPC_PROVIDER_XLAYER!;
+    case ChainId.CYBER_TESTNET:
+      return process.env.JSON_RPC_PROVIDER_CYBER_TESTNET!;
+    case ChainId.FLOW_TESTNET:
+      return process.env.JSON_RPC_PROVIDER_FLOW_TESTNET!;
     default:
       throw new Error(`Chain id: ${id} not supported`);
   }
@@ -750,6 +786,20 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId in ChainId]: Token } = {
     'WOKB',
     'Wrapped OKB'
   ),
+  [ChainId.CYBER_TESTNET]: new Token(
+    ChainId.CYBER_TESTNET,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.FLOW_TESTNET]: new Token(
+    ChainId.FLOW_TESTNET,
+    '0xd3bF53DAC106A0290B0483EcBC89d40FcC961f3e',
+    18,
+    'WFLOW',
+    'Wrapped Flow'
+  ),
 };
 
 function isMatic(
@@ -948,6 +998,30 @@ class XLayerNativeCurrency extends NativeCurrency {
   }
 }
 
+function isFlow(chainId: number): chainId is ChainId.FLOW_TESTNET {
+  return chainId === ChainId.FLOW_TESTNET;
+}
+
+class FlowNativeCurrency extends NativeCurrency {
+  equals(other: Currency): boolean {
+    return other.isNative && other.chainId === this.chainId;
+  }
+
+  get wrapped(): Token {
+    if (!isFlow(this.chainId)) throw new Error('Not flow');
+    const nativeCurrency = WRAPPED_NATIVE_CURRENCY[this.chainId];
+    if (nativeCurrency) {
+      return nativeCurrency;
+    }
+    throw new Error(`Does not support this chain ${this.chainId}`);
+  }
+
+  public constructor(chainId: number) {
+    if (!isFlow(chainId)) throw new Error('Not flow');
+    super(chainId, 18, 'FLOW', 'Flow');
+  }
+}
+
 export class ExtendedEther extends Ether {
   public get wrapped(): Token {
     if (this.chainId in WRAPPED_NATIVE_CURRENCY) {
@@ -989,6 +1063,8 @@ export function nativeOnChain(chainId: number): NativeCurrency {
     cachedNativeCurrency[chainId] = new MonadNativeCurrency(chainId);
   } else if (isXLayer(chainId)) {
     cachedNativeCurrency[chainId] = new XLayerNativeCurrency(chainId);
+  } else if (isFlow(chainId)) {
+    cachedNativeCurrency[chainId] = new FlowNativeCurrency(chainId);
   } else {
     cachedNativeCurrency[chainId] = ExtendedEther.onChain(chainId);
   }

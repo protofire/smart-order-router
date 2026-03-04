@@ -160,6 +160,10 @@ const TENDERLY_NODE_API = (chainId: ChainId, tenderlyNodeApiKey: string) => {
       return `https://monad.gateway.tenderly.co/${tenderlyNodeApiKey}`;
     case ChainId.XLAYER:
       return `https://xlayer.gateway.tenderly.co/${tenderlyNodeApiKey}`;
+    case ChainId.CYBER_TESTNET:
+      return `https://cyber-testnet.gateway.tenderly.co/${tenderlyNodeApiKey}`;
+    case ChainId.FLOW_TESTNET:
+      return `https://flow-testnet.gateway.tenderly.co/${tenderlyNodeApiKey}`;
     default:
       throw new Error(
         `ChainId ${chainId} does not correspond to a tenderly node endpoint`

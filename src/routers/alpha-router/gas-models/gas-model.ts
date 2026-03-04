@@ -56,6 +56,8 @@ import {
   USDC_WORLDCHAIN,
   USDC_WORMHOLE_CELO,
   USDC_XLAYER,
+  USDC_CYBER_TESTNET,
+  USDC_FLOW_TESTNET,
   USDC_ZKSYNC,
   USDC_ZORA,
   USDT_ARBITRUM,
@@ -139,6 +141,8 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
   [ChainId.UNICHAIN]: [DAI_UNICHAIN, USDC_UNICHAIN],
   [ChainId.SONEIUM]: [USDC_SONEIUM],
   [ChainId.XLAYER]: [USDC_XLAYER],
+  [ChainId.CYBER_TESTNET]: [USDC_CYBER_TESTNET],
+  [ChainId.FLOW_TESTNET]: [USDC_FLOW_TESTNET],
 };
 
 export type L1ToL2GasCosts = {

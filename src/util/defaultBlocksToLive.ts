@@ -49,4 +49,6 @@ export const DEFAULT_BLOCKS_TO_LIVE: { [chain in ChainId]: number } = {
   // (60 minutes) / (1 seconds) = 3600
   [ChainId.SONEIUM]: 3600,
   [ChainId.XLAYER]: 3600,
+  [ChainId.CYBER_TESTNET]: 3600,
+  [ChainId.FLOW_TESTNET]: 3600,
 };

@@ -764,6 +764,22 @@ export const USDC_XLAYER = new Token(
   'USDC'
 );
 
+export const USDC_CYBER_TESTNET = new Token(
+  ChainId.CYBER_TESTNET,
+  '0xfbd9e7432d2bd28ac8aab499bda05c9ea45872b6',
+  6,
+  'mUSDC',
+  'Mock USDC'
+);
+
+export const USDC_FLOW_TESTNET = new Token(
+  ChainId.FLOW_TESTNET,
+  '0x5e65b6B04fbA51D95409712978Cb91E99d93aE73',
+  6,
+  'USDCf',
+  'USDCf'
+);
+
 export const WLD_WORLDCHAIN = new Token(
   ChainId.WORLDCHAIN,
   '0x2cFc85d8E48F8EAB294be644d9E25C3030863003',
@@ -1136,6 +1152,10 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_MONAD;
     case ChainId.XLAYER:
       return USDC_XLAYER;
+    case ChainId.CYBER_TESTNET:
+      return USDC_CYBER_TESTNET;
+    case ChainId.FLOW_TESTNET:
+      return USDC_FLOW_TESTNET;
     default:
       throw new Error(`Chain id: ${chainId} not supported`);
   }

@@ -57,6 +57,8 @@ import {
   USDC_SONEIUM,
   USDC_UNICHAIN,
   USDC_XLAYER,
+  USDC_CYBER_TESTNET,
+  USDC_FLOW_TESTNET,
   USDT_ARBITRUM,
   USDT_BNB,
   USDT_MAINNET,
@@ -268,6 +270,14 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
   ],
   [ChainId.SONEIUM]: [USDC_SONEIUM, WRAPPED_NATIVE_CURRENCY[ChainId.SONEIUM]!],
   [ChainId.XLAYER]: [USDC_XLAYER, WRAPPED_NATIVE_CURRENCY[ChainId.XLAYER]!],
+  [ChainId.CYBER_TESTNET]: [
+    USDC_CYBER_TESTNET,
+    WRAPPED_NATIVE_CURRENCY[ChainId.CYBER_TESTNET]!,
+  ],
+  [ChainId.FLOW_TESTNET]: [
+    USDC_FLOW_TESTNET,
+    WRAPPED_NATIVE_CURRENCY[ChainId.FLOW_TESTNET]!,
+  ],
 };
 
 const excludedV3PoolIds = new Set([

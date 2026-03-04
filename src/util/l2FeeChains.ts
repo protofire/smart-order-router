@@ -13,4 +13,5 @@ export const opStackChains = [
   ChainId.UNICHAIN,
   ChainId.SONEIUM,
   ChainId.XLAYER,
+  ChainId.CYBER_TESTNET,
 ];
